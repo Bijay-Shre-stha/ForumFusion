@@ -22,27 +22,30 @@ class GoogleController extends Controller
     {
         try {
             $user = Socialite::driver('google')->user();
-            // Check if user already exists
-            $findUser = User::where('email', $user->getEmail())->first();
+            $findUser = $this->findOrCreateUser($user);
 
-            if ($findUser) {
-                Auth::login($findUser);
-                return redirect("/welcome");
-            } else {
-                $newUser = User::create([
-                    'email' => $user->getEmail(),
-                    'googleId' => $user->getId(), // Update to use 'google_id' field
-                    'username' => $user->getName(), // Adjust as needed
-                    'currentOrgName' => 0, // Adjust as needed
-                ]);
-                Log::info('Attempting to create a new user', ['email' => $user->getEmail(), 'google_id' => $user->getId()]);
-
-                Auth::login($newUser);
-                return redirect("/welcome");
-            }
+            Auth::login($findUser);
+            return redirect("/welcome");
         } catch (Exception $e) {
-            dd($e->getMessage()); // This will show the specific exception message
+            Log::error('Google login error: ' . $e->getMessage());
             return redirect()->route('home');
         }
+    }
+
+    protected function findOrCreateUser($socialiteUser)
+    {
+        $existingUser = User::where('email', $socialiteUser->getEmail())->first();
+
+        return $existingUser ?: $this->createNewUser($socialiteUser);
+    }
+
+    protected function createNewUser($socialiteUser)
+    {
+        return User::create([
+            'email' => $socialiteUser->getEmail(),
+            'googleId' => $socialiteUser->getId(),
+            'username' => $socialiteUser->getName(),
+            'currentOrgName' => 0,
+        ]);
     }
 }
