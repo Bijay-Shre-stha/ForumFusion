@@ -41,10 +41,12 @@ class GoogleController extends Controller
 
     protected function createNewUser($socialiteUser)
     {
+        // dd($socialiteUser);
         return User::create([
             'email' => $socialiteUser->getEmail(),
             'googleId' => $socialiteUser->getId(),
             'username' => $socialiteUser->getName(),
+            'avatar' => $socialiteUser->getAvatar(),
             'currentOrgName' => 0,
         ]);
     }

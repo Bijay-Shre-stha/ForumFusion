@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('googleId');
             $table->string('username');
+            $table->string('avatar');
             $table->integer('currentOrgNumber')->nullable();
             $table->timestamps();
         });
