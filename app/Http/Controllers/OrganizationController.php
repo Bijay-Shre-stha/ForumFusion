@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Organization;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use App\Models\User;
 
 class OrganizationController extends Controller
 {
@@ -25,17 +29,58 @@ class OrganizationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    private function getRandomNumber()
+    {
+        return random_int(0, 9999);
+    }
     public function store(Request $request)
     {
-        $organization = new Organization();
-        $organization->organizationName = $request->organizationName;
-        $organization->organizationAddress = $request->organizationAddress;
-        $organization->organizationPhoneNumber = $request->organizationPhoneNumber;
-        $organization->organizationEmail = $request->organizationEmail;
-        $organization->organizationPanNumber = $request->organizationPanNumber;
-        $organization->organizationVatNumber = $request->organizationVatNumber;
-        $organization->save();
-        return redirect()->route('organization.index');
+        $user = auth()->user();
+        // dd($User);
+        do {
+            $randomNumber = $this->getRandomNumber();
+            $tableName = "organizations_" . $randomNumber;
+        } while (Schema::hasTable($tableName));
+
+        Schema::create($tableName, function (Blueprint $table) {
+            $table->id();
+            $table->string('organizationName');
+            $table->string('organizationAddress');
+            $table->unsignedInteger('organizationPhoneNumber');
+            $table->string('organizationEmail');
+            $table->unsignedInteger('organizationPanNumber')->nullable();
+            $table->unsignedInteger('organizationVatNumber')->nullable();
+            $table->timestamps();
+        });
+
+        if (!Schema::hasTable('users_orgs')) {
+            Schema::create('users_orgs', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedInteger('user_id');
+                $table->unsignedInteger('org_id');
+                // $table->bigInteger('userGoogle_id');
+                $table->timestamps();
+            });
+        }
+
+        DB::table($tableName)->insert([
+            'organizationName' => $request->organizationName,
+            'organizationAddress' => $request->organizationAddress,
+            'organizationPhoneNumber' => $request->organizationPhoneNumber,
+            'organizationEmail' => $request->organizationEmail,
+            'organizationPanNumber' => $request->organizationPanNumber,
+            'organizationVatNumber' => $request->organizationVatNumber,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('users_orgs')->insert([
+            'user_id' => $user->id,
+            'org_id' => $randomNumber,
+            // 'userGoogle_id'=>$user->googleId,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        return ("welcome");
     }
 
     /**
@@ -43,7 +88,6 @@ class OrganizationController extends Controller
      */
     public function show(string $id)
     {
-
     }
 
     /**
@@ -51,9 +95,6 @@ class OrganizationController extends Controller
      */
     public function edit(string $id)
     {
-        $organization = Organization::find($id);
-        return view('organization.edit', compact('organization'));
-
     }
 
     /**
@@ -61,26 +102,12 @@ class OrganizationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $organization = Organization::find($id);
-        $organization->organizationName = $request->organizationName;
-        $organization->organizationAddress = $request->organizationAddress;
-        $organization->organizationPhoneNumber = $request->organizationPhoneNumber;
-        $organization->organizationEmail = $request->organizationEmail;
-        $organization->organizationPanNumber = $request->organizationPanNumber;
-        $organization->organizationVatNumber = $request->organizationVatNumber;
-        $organization->save();
-        return redirect()->route('organization.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        $organization = Organization::find($id);
-        $organization->delete();
-        return redirect()->route('organization.index');
-
+    {;
     }
 }
-
