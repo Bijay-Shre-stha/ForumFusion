@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
-
+use App\Http\Controllers\OrganizationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +34,11 @@ Route::get('login/facebook/redirect', [FacebookController::class, 'facebookRedir
 
 //signup
 Route::get('/signup', function () { return view('auth.passwords.signup');})->name('register');
+
+//Org
+Route::get('/organization',[OrganizationController::class,'index'])->name('organization.index');
+Route::get('/organization/create/',[OrganizationController::class,'create'])->name('organization.create');
+Route::post('/organization/store/',[OrganizationController::class,'store'])->name('organization.store');
+Route::get('/organization/{id}/edit',[OrganizationController::class,'edit'])->name('organization.edit');
+Route::put('/organization/{id}/update',[OrganizationController::class,'update'])->name('organization.update');
+Route::get('/organization/{id}/delete',[OrganizationController::class,'delete'])->name('organization.delete');
