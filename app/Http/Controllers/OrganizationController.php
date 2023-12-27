@@ -40,6 +40,7 @@ class OrganizationController extends Controller
         do {
             $randomNumber = $this->getRandomNumber();
             $tableName = "organizations_" . $randomNumber;
+            $forumName = "forum_" . $randomNumber;
         } while (Schema::hasTable($tableName));
 
         Schema::create($tableName, function (Blueprint $table) {
@@ -59,6 +60,17 @@ class OrganizationController extends Controller
                 $table->unsignedInteger('user_id');
                 $table->unsignedInteger('org_id');
                 // $table->bigInteger('userGoogle_id');
+                $table->timestamps();
+            });
+        }
+
+        if(!Schema::hasTable($forumName)){
+            Schema::create($forumName, function (Blueprint $table) {
+                $table->id();
+                $table->unsignedInteger('user_id');
+                $table->unsignedInteger('org_id');
+                $table->string('Question');
+                $table->string('Answer');
                 $table->timestamps();
             });
         }
