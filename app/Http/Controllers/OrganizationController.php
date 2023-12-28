@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class OrganizationController extends Controller
 {
@@ -29,19 +30,17 @@ class OrganizationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    private function getRandomNumber()
+    private function sanitizerTableName($name)
     {
-        return random_int(0, 9999);
+        return Str::snake($name);
     }
     public function store(Request $request)
     {
         $user = auth()->user();
         // dd($User);
-        do {
-            $randomNumber = $this->getRandomNumber();
-            $tableName = "organizations_" . $randomNumber;
-            $questionTableName = "question_" . $randomNumber;
-        } while (Schema::hasTable($tableName));
+        $tableName = "organizations_" . $this->sanitizerTableName($request->organizationName);
+        $questionTable = "question_" . $this->sanitizerTableName($request->organizationName);
+        $answerTable = "answer_" . $this->sanitizerTableName($request->organizationName);
 
         Schema::create($tableName, function (Blueprint $table) {
             $table->id();
@@ -58,19 +57,28 @@ class OrganizationController extends Controller
             Schema::create('users_orgs', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedInteger('user_id');
-                $table->unsignedInteger('org_id');
+                $table->string('org_id');
                 // $table->bigInteger('userGoogle_id');
                 $table->timestamps();
             });
         }
 
-        if(!Schema::hasTable($questionTableName)){
-            Schema::create($questionTableName, function (Blueprint $table) {
+        if (!Schema::hasTable($questionTable)) {
+            Schema::create($questionTable, function (Blueprint $table) {
                 $table->id();
                 $table->unsignedInteger('user_id');
-                $table->unsignedInteger('org_id');
-                $table->string('Question');
-                $table->string('Answer');
+                $table->string('org_id');
+                $table->string('title');
+                $table->longText('description');
+                $table->timestamps();
+            });
+        }
+        if (!Schema::hasTable($answerTable)) {
+            Schema::create($answerTable, function (Blueprint $table) {
+                $table->id();
+                $table->unsignedInteger('user_id');
+                $table->string('org_id');
+                $table->longText('answer');
                 $table->timestamps();
             });
         }
@@ -87,12 +95,27 @@ class OrganizationController extends Controller
         ]);
         DB::table('users_orgs')->insert([
             'user_id' => $user->id,
-            'org_id' => $randomNumber,
+            'org_id' => $request->organizationName,
             // 'userGoogle_id'=>$user->googleId,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        return ("welcome");
+        // DB::table($questionTable)->insert([
+        //     'user_id' => $user->id,
+        //     'org_id' => $randomNumber,
+        //     'title' => $request->title,
+        //     'description' => $request->description,
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
+        // DB::table($answerTable)->insert([
+        //     'user_id' => $user->id,
+        //     'org_id' => $randomNumber,
+        //     'answer' => $request->answer,
+        //     'created_at' => now(),
+        //     'updated_at' => now(),
+        // ]);
+        return redirect(route('dashboard'))->with('success', 'Organization created successfully');
     }
 
     /**

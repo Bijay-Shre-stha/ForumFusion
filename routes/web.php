@@ -35,6 +35,9 @@ Route::get('login/facebook/redirect', [FacebookController::class, 'facebookRedir
 //signup
 Route::get('/signup', function () { return view('auth.passwords.signup');})->name('register');
 
+//dashboard
+Route::get('/dashboard', function () { return view('dashboard.index');})->name('dashboard');
+
 //Org
 Route::get('/organization',[OrganizationController::class,'index'])->name('organization.index');
 Route::get('/organization/create/',[OrganizationController::class,'create'])->name('organization.create');
