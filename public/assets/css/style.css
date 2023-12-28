@@ -92,14 +92,14 @@ body {
     padding: 0;
 }
 
-nav {
+.nav {
     background-color: #333;
     color: white;
     padding: 10px;
     text-align: center;
 }
 
-form {
+.form {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
@@ -108,19 +108,19 @@ form {
     background-color: #f9f9f9;
 }
 
-label {
+.label {
     display: block;
     margin-bottom: 8px;
 }
 
-input[type="text"], input[type="email"], input[type="tel"] {
+.input_label{
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     box-sizing: border-box;
 }
 
-button {
+.submit_button {
     background-color: #4caf50;
     color: white;
     padding: 10px 15px;
@@ -129,6 +129,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.submit_button:hover {
     background-color: #45a049;
 }
