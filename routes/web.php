@@ -16,7 +16,7 @@ use App\Http\Controllers\OrganizationController;
 */
 
 Route::get('/', function () {
-    return view('auth.passwords.login');
+    return view('dashboard.index');
 })->name('home');
 
 Route::get('/welcome', function () {
@@ -29,11 +29,13 @@ Route::get('login/google', [GoogleController::class, 'google'])->name('google.lo
 Route::get('login/google/redirect', [GoogleController::class, 'googleRedirect'])->name('google.redirect');
 
 //facebook
-Route::get('login/facebook', [FacebookController::class, 'facebook'])->name('facebook.login');
-Route::get('login/facebook/redirect', [FacebookController::class, 'facebookRedirect'])->name('facebook.redirect');
+// Route::get('login/facebook', [FacebookController::class, 'facebook'])->name('facebook.login');
+// Route::get('login/facebook/redirect', [FacebookController::class, 'facebookRedirect'])->name('facebook.redirect');
 
 //signup
-Route::get('/signup', function () { return view('auth.passwords.signup');})->name('register');
+Route::get('/signup', function () { return view('auth.credentials.signup');})->name('register');
+Route::get('/login',function(){return view('auth.credentials.login');})->name('login');
+
 
 //dashboard
 Route::get('/dashboard', function () { return view('dashboard.index');})->name('dashboard');

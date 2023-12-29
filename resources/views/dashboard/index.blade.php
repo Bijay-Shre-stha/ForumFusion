@@ -15,6 +15,12 @@
         </div>
     @endif
     redirected
+
+    <button>
+        <a href="{{route ("login")}}">
+            create your own close source
+        </a>
+    </button>
 </body>
 <script>
     setTimeout(() => {

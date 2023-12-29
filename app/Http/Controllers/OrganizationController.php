@@ -46,10 +46,10 @@ class OrganizationController extends Controller
             $table->id();
             $table->string('organizationName');
             $table->string('organizationAddress');
-            $table->unsignedInteger('organizationPhoneNumber');
+            $table->unsignedBigInteger('organizationPhoneNumber');
             $table->string('organizationEmail');
-            $table->unsignedInteger('organizationPanNumber')->nullable();
-            $table->unsignedInteger('organizationVatNumber')->nullable();
+            $table->unsignedBigInteger('organizationPanNumber')->nullable();
+            $table->unsignedBigInteger('organizationVatNumber')->nullable();
             $table->timestamps();
         });
 
