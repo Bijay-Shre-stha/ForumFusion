@@ -41,9 +41,8 @@ Route::get('/login',function(){return view('auth.credentials.login');})->name('l
 Route::get('/dashboard', function () { return view('dashboard.index');})->name('dashboard');
 
 //Org
-Route::get('/organization',[OrganizationController::class,'index'])->name('organization.index');
-Route::get('/organization/create/',[OrganizationController::class,'create'])->name('organization.create');
-Route::post('/organization/store/',[OrganizationController::class,'store'])->name('organization.store');
-Route::get('/organization/{id}/edit',[OrganizationController::class,'edit'])->name('organization.edit');
-Route::put('/organization/{id}/update',[OrganizationController::class,'update'])->name('organization.update');
-Route::get('/organization/{id}/delete',[OrganizationController::class,'delete'])->name('organization.delete');
+Route::
+    resource('organization',OrganizationController::class)
+    ->except(['show'])
+    ->middleware('auth');
+
