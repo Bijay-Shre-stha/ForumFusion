@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
@@ -15,9 +16,7 @@ use App\Http\Controllers\OrganizationController;
 |
 */
 
-Route::get('/', function () {
-    return view('dashboard.index');
-})->name('home');
+Route::get('/',[DashboardController::class,'index'])->name('dashboard.index');
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -38,11 +37,12 @@ Route::get('/login',function(){return view('auth.credentials.login');})->name('l
 
 
 //dashboard
-Route::get('/dashboard', function () { return view('dashboard.index');})->name('dashboard');
+Route::resource('dashboard', DashboardController::class);
 
 //Org
-Route::
-    resource('organization',OrganizationController::class)
-    ->except(['show'])
-    ->middleware('auth');
-
+Route::get('/organization',[OrganizationController::class,'index'])->name('organization.index');
+Route::get('/organization/create/',[OrganizationController::class,'create'])->name('organization.create');
+Route::post('/organization/store/',[OrganizationController::class,'store'])->name('organization.store');
+Route::get('/organization/{id}/edit',[OrganizationController::class,'edit'])->name('organization.edit');
+Route::put('/organization/{id}/update',[OrganizationController::class,'update'])->name('organization.update');
+Route::get('/organization/{id}/delete',[OrganizationController::class,'delete'])->name('organization.delete');

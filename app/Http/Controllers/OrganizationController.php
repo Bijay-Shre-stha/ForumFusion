@@ -115,7 +115,7 @@ class OrganizationController extends Controller
         //     'created_at' => now(),
         //     'updated_at' => now(),
         // ]);
-        return redirect(route('dashboard'))->with('success', 'Organization created successfully');
+        return redirect(route('dashboard.index'))->with('success', 'Organization created successfully');
     }
 
     /**

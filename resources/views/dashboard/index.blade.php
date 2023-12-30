@@ -17,10 +17,20 @@
     redirected
 
     <button>
-        <a href="{{route ("login")}}">
+        <a href="{{ route('login') }}">
             create your own close source
         </a>
     </button>
+
+    @foreach ($users as $user)
+        <h1>{{ $user->username }}</h1>
+        <h1>{{ $user->email }}</h1>
+        <h1>{{ $user->password }}</h1>
+        <h1>{{ $user->created_at }}</h1>
+        <h1>{{ $user->updated_at }}</h1>
+        <img src="{{ $user->avatar }}" alt="{{ $user->username }}">
+    @endforeach
+
 </body>
 <script>
     setTimeout(() => {

@@ -17,7 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+    public $fillable = [
         'email',
         'googleId',
         'username',
@@ -49,5 +49,5 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Organization::class, 'id', 'googleId');
     }
-    
+
 }
