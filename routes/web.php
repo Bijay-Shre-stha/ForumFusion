@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\OrganizationController;
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,5 @@ Route::post('/organization/store/',[OrganizationController::class,'store'])->nam
 Route::get('/organization/{id}/edit',[OrganizationController::class,'edit'])->name('organization.edit');
 Route::put('/organization/{id}/update',[OrganizationController::class,'update'])->name('organization.update');
 Route::get('/organization/{id}/delete',[OrganizationController::class,'delete'])->name('organization.delete');
+
+Route::resource('forum', ForumController::class);

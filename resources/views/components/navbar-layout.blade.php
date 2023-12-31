@@ -50,7 +50,7 @@
                             <span class="hide-menu">FEATURES</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/" aria-expanded="false">
+                            <a class="sidebar-link" href="{{route ("forum.index")}}" aria-expanded="false">
                                 <span>
                                     <i class='bx bx-book-content'></i> </span>
                                 <span class="hide-menu">Forums</span>
@@ -145,7 +145,6 @@
             <div class="container-fluid">
                 <div class="card w-100 h-100 position-relative">
                     <div class="card-body">
-                        <h5 class="card-title fw-semibold mb-4">Icons</h5>
                         {{ $slot }}
                     </div>
                 </div>
