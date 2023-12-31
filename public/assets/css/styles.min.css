@@ -1,13 +1,13 @@
-@charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
-/*!
- * Bootstrap  v5.3.0-alpha1 (https://getbootstrap.com/)
- * Copyright 2011-2022 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-@import "../libs/simplebar/dist/simplebar.css";
-@import "../css/icons/tabler-icons/tabler-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Merriweather:ital,wght@1,700&family=Poppins:wght@300;500&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Inter, sans-serif;
+    font-weight: 100;
+    letter-spacing: .09rem;
+}
 :root,
 [data-bs-theme="light"] {
     --bs-blue: #5d87ff;
@@ -20197,15 +20197,6 @@ ul {
     margin-bottom: 30px;
 }
 
-.card-hover {
-    -webkit-transition: 0.2s ease-in;
-    transition: 0.2s ease-in;
-}
-
-.card-hover:hover {
-    -webkit-transform: translate3d(0px, -5px, 0px);
-    transform: translate3d(0px, -5px, 0px);
-}
 
 .round-8 {
     width: 8px;
@@ -20233,33 +20224,20 @@ ul {
     -webkit-animation: 15s ease 0s infinite normal none running gradient;
     animation: 15s ease 0s infinite normal none running gradient;
 }
-
-.timeline-widget .timeline-item {
-    min-height: 70px;
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
 
-.timeline-widget .timeline-item .timeline-time {
-    padding: 6px 16px 6px 0;
-    min-width: 90px;
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
 
-.timeline-widget .timeline-item .timeline-badge-wrap .timeline-badge {
-    width: 12px;
-    height: 12px;
-    border-radius: 50px;
-    background-color: transparent;
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
 }
 
-.timeline-widget .timeline-item .timeline-badge-wrap .timeline-badge-border {
-    width: 1px;
-    height: 100%;
-    background-color: #ebf1f6;
-}
-
-.timeline-widget .timeline-item .timeline-desc {
-    padding: 6px 16px;
-}
-
-.timeline-widget .timeline-item .timeline-badge.badge-primary {
-    border: 2px solid #5d87ff;
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

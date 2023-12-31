@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
@@ -17,7 +18,7 @@ use App\Http\Controllers\OrganizationController;
 |
 */
 
-Route::get('/',[DashboardController::class,'index'])->name('dashboard.index');
+Route::get('/',function(){return view('auth.credentials.login');})->name('login');
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -49,3 +50,7 @@ Route::put('/organization/{id}/update',[OrganizationController::class,'update'])
 Route::get('/organization/{id}/delete',[OrganizationController::class,'delete'])->name('organization.delete');
 
 Route::resource('forum', ForumController::class);
+
+//question
+Route::resource('question', QuestionController::class);
+

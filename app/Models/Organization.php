@@ -16,4 +16,15 @@ class Organization extends Model
         'organizationPanNumber',
         'organizationVatNumber'
     ];
+    public function question(){
+        return $this->hasMany(Question::class, 'org_id' , 'user_id');
+    }
+    public function user(){
+        return $this->hasMany(User::class, 'org_id' , 'user_id');
+    }
+    public function answer(){
+        return $this->hasMany(Answer::class, 'org_id' , 'user_id');
+    }
+    
+
 }

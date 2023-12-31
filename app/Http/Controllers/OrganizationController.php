@@ -67,11 +67,13 @@ class OrganizationController extends Controller
             Schema::create($questionTable, function (Blueprint $table) {
                 $table->id();
                 $table->unsignedInteger('user_id');
-                $table->string('org_id');
                 $table->string('title');
                 $table->longText('description');
                 $table->timestamps();
             });
+            session([
+                'questionTable' => $questionTable,
+            ]);
         }
         if (!Schema::hasTable($answerTable)) {
             Schema::create($answerTable, function (Blueprint $table) use ($questionTable) {
@@ -104,7 +106,7 @@ class OrganizationController extends Controller
         ]);
         // DB::table($questionTable)->insert([
         //     'user_id' => $user->id,
-        //     'org_id' => $randomNumber,
+        //     'org_id' => $request->organizationName,
         //     'title' => $request->title,
         //     'description' => $request->description,
         //     'created_at' => now(),

@@ -1,4 +1,5 @@
 <x-navbar-layout>
+    @section('title', 'forum')
 <body>
     forum show
 </body>
