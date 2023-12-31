@@ -74,11 +74,13 @@ class OrganizationController extends Controller
             });
         }
         if (!Schema::hasTable($answerTable)) {
-            Schema::create($answerTable, function (Blueprint $table) {
+            Schema::create($answerTable, function (Blueprint $table) use ($questionTable) {
                 $table->id();
                 $table->unsignedInteger('user_id');
                 $table->string('org_id');
+                $table->unsignedBigInteger('question_id'); // Add this line
                 $table->longText('answer');
+                $table->foreign('question_id')->references('id')->on($questionTable);
                 $table->timestamps();
             });
         }

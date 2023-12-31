@@ -1,41 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-navbar-layout>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h4>Users</h4>
+                        <box-icon name='user'></box-icon>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered table-striped" id="laravel_datatable">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-
-<body>
-    @if (session()->has('success'))
-        <div class="alert">
-            {{ session()->get('success') }}
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $user )
+                                <tr>
+                                    <td>{{ $user->id }}</td>
+                                    <td>{{ $user->username }}</td>
+                                    <td>{{ $user->email }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-    @endif
-    redirected
-
-    <button>
-        <a href="{{ route('login') }}">
-            create your own close source
-        </a>
-    </button>
-
-    @foreach ($users as $user)
-        <h1>{{ $user->username }}</h1>
-        <h1>{{ $user->email }}</h1>
-        <h1>{{ $user->password }}</h1>
-        <h1>{{ $user->created_at }}</h1>
-        <h1>{{ $user->updated_at }}</h1>
-        <img src="{{ $user->avatar }}" alt="{{ $user->username }}">
-    @endforeach
-
-</body>
-<script>
-    setTimeout(() => {
-        document.querySelector(".alert").style.display = 'none';
-    }, 2000);
-</script>
-
-</html>
+</x-navbar-layout>
