@@ -31,9 +31,9 @@ Route::get('/welcome', function () {
 
 //google
 Route::get('login/google', [GoogleController::class, 'google'])
-        ->name('google.login');
+    ->name('google.login');
 Route::get('login/google/redirect', [GoogleController::class, 'googleRedirect'])
-        ->name('google.redirect');
+    ->name('google.redirect');
 
 //facebook
 // Route::get('login/facebook', [FacebookController::class, 'facebook'])->name('facebook.login');
@@ -55,16 +55,19 @@ Route::middleware(['isAuthenticated'])->group(function () {
 
 //Org
 Route::middleware('isAuthenticated')->group(function () {
-    Route::get('/organization', [OrganizationController::class, 'index'])->name('organization.index');
-    Route::get('/organization/create', [OrganizationController::class, 'create'])->name('organization.create');
-    Route::post('/organization/store', [OrganizationController::class, 'store'])->name('organization.store');
-    Route::get('/organization/{id}/edit', [OrganizationController::class, 'edit'])->name('organization.edit');
-    Route::put('/organization/{id}/update', [OrganizationController::class, 'update'])->name('organization.update');
-    Route::get('/organization/{id}/delete', [OrganizationController::class, 'delete'])->name('organization.delete');
+    Route::resource('organization', OrganizationController::class);
 });
 
 //forum
 Route::resource('forum', ForumController::class);
 
 //question
-Route::resource('question', QuestionController::class);
+Route::middleware(['auth', 'isAuthenticated'])->group(function () {
+    Route::resource('question', QuestionController::class);
+});
+
+//logout
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/welcome');
+})->name('logout');

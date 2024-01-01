@@ -38,7 +38,7 @@
                             <box-icon name='user'></box-icon>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{route ("dashboard.index")}}" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('dashboard.index') }}" aria-expanded="false">
                                 <span>
                                     <i class='bx bxs-dashboard'></i>
                                 </span>
@@ -50,26 +50,41 @@
                             <span class="hide-menu">FEATURES</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{route ("forum.index")}}" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('forum.index') }}" aria-expanded="false">
                                 <span>
                                     <i class='bx bx-book-content'></i> </span>
                                 <span class="hide-menu">Forums</span>
                             </a>
                         </li>
+
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{route ("question.index")}}" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('question.index') }}" aria-expanded="false">
                                 <span>
                                     <i class='bx bx-question-mark'></i> </span>
                                 <span class="hide-menu">Ask</span>
                             </a>
                         </li>
+                        @auth
+                            <li class="nav-small-cap">
+                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                <span class="hide-menu">Organization</span>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('organization.create') }}" aria-expanded="false">
+                                    <span>
+                                        <i class='bx bx-building-house'></i>
+                                    </span>
+                                    <span class="hide-menu">Create Community</span>
+                                </a>
+                            </li>
+                        @endauth
 
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">AUTH</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{route ("login")}}" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('login') }}" aria-expanded="false">
                                 <span>
                                     <i class='bx bx-log-in'></i> </span>
                                 <span class="hide-menu">Login</span>
@@ -111,8 +126,7 @@
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                            <a href="/"
-                                target="_blank" class="btn btn-primary" >
+                            <a href="/" target="_blank" class="btn btn-primary">
                                 <i class='bx bx-user-plus'></i>
                                 Invite</a>
                             <li class="nav-item dropdown">
@@ -139,7 +153,7 @@
                                             <i class="ti ti-list-check fs-6"></i>
                                             <p class="mb-0 fs-3">My Task</p>
                                         </a>
-                                        <a href="./authentication-login.html"
+                                        <a href="{{ route('logout') }}"
                                             class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                                     </div>
                                 </div>
@@ -161,8 +175,9 @@
 
 </body>
 <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/sidebarmenu.js"></script>
-    <script src="../assets/js/app.min.js"></script>
-    <script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/sidebarmenu.js"></script>
+<script src="../assets/js/app.min.js"></script>
+<script src="../assets/libs/simplebar/dist/simplebar.js"></script>
+
 </html>

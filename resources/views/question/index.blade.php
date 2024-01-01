@@ -3,9 +3,14 @@
 
     <body>
         @if (session()->has('success'))
-            <div class="alert alert-success ">
+            <div id="successMessage" class="alert alert-success">
                 {{ session()->get('success') }}
             </div>
+            <script>
+                setTimeout(function() {
+                    $('#successMessage').fadeOut('fast');
+                }, 2000);
+            </script>
         @endif
         <div class="container">
             <div class="row">
