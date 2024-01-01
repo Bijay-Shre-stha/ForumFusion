@@ -28,7 +28,7 @@ class GoogleController extends Controller
             return redirect()->route('dashboard.index');
         } catch (Exception $e) {
             Log::error('Google login error: ' . $e->getMessage());
-            return redirect()->route('home');
+            return redirect()->route('login');
         }
     }
 
@@ -47,7 +47,7 @@ class GoogleController extends Controller
             'googleId' => $socialiteUser->getId(),
             'username' => $socialiteUser->getName(),
             'avatar' => $socialiteUser->getAvatar(),
-            'currentOrgName' => 0,
+            'isAuthenticated' => true,
         ]);
     }
 }

@@ -30,8 +30,10 @@ Route::get('/welcome', function () {
 
 
 //google
-Route::get('login/google', [GoogleController::class, 'google'])->name('google.login');
-Route::get('login/google/redirect', [GoogleController::class, 'googleRedirect'])->name('google.redirect');
+Route::get('login/google', [GoogleController::class, 'google'])
+        ->name('google.login');
+Route::get('login/google/redirect', [GoogleController::class, 'googleRedirect'])
+        ->name('google.redirect');
 
 //facebook
 // Route::get('login/facebook', [FacebookController::class, 'facebook'])->name('facebook.login');
@@ -47,13 +49,12 @@ Route::get('/login', function () {
 
 
 //dashboard
-Auth::routes();
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['isAuthenticated'])->group(function () {
     Route::resource('dashboard', DashboardController::class);
 });
 
 //Org
-Route::middleware('auth')->group(function () {
+Route::middleware('isAuthenticated')->group(function () {
     Route::get('/organization', [OrganizationController::class, 'index'])->name('organization.index');
     Route::get('/organization/create', [OrganizationController::class, 'create'])->name('organization.create');
     Route::post('/organization/store', [OrganizationController::class, 'store'])->name('organization.store');
@@ -63,7 +64,7 @@ Route::middleware('auth')->group(function () {
 });
 
 //forum
-Route::middleware(['auth', 'verified'])->resource('forum', ForumController::class);
+Route::resource('forum', ForumController::class);
 
 //question
-Route::middleware(['auth', 'verified'])->resource('question', QuestionController::class);
+Route::resource('question', QuestionController::class);

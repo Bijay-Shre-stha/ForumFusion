@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('googleId');
             $table->string('username');
             $table->string('avatar');
+            $table->boolean('isAuthenticated');
             $table->integer('currentOrgNumber')->nullable();
             $table->timestamps();
         });

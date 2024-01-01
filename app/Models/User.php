@@ -22,7 +22,7 @@ class User extends Authenticatable
         'googleId',
         'username',
         'avatar',
-        'currentOrgNumber',
+        'isAuthenticated',
     ];
 
     /**
