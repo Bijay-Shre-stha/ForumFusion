@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
+use App\Models\Question;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
@@ -12,8 +15,10 @@ class ForumController extends Controller
     public function index()
     {
         //
-        return view ("forum.index");
+        $user = User::all();
+        // $question = Question::all();
 
+        return view('forum.index', ['users' => $user]);
     }
 
     /**
