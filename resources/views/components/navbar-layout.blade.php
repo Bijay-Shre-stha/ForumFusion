@@ -70,6 +70,14 @@
                                 <span class="hide-menu">Organization</span>
                             </li>
                             <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('organization.index') }}" aria-expanded="false">
+                                    <span>
+                                        <i class='bx bx-building-house'></i>
+                                    </span>
+                                    <span class="hide-menu">My Community</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
                                 <a class="sidebar-link" href="{{ route('organization.create') }}" aria-expanded="false">
                                     <span>
                                         <i class='bx bx-building-house'></i>
