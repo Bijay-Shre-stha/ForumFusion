@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
 {
@@ -13,8 +14,11 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-        $questionTable = $request->session()->get('questionTable');
-        $questions = DB::table($questionTable)->get();
+
+        // $questionTable = $request->session()->get('questionTable');
+        // $questions = DB::table($questionTable)->get();
+
+        $questions = Question::all();
         return view('question.index', compact('questions'));
     }
 
@@ -23,8 +27,10 @@ class QuestionController extends Controller
      */
     public function create(Request $request)
     {
-        $questionTable = $request->session()->get('questionTable');
-        return view("question.create", compact('questionTable'));
+        // $questionTable = $request->session()->get('questionTable');
+        // return view("question.create", compact('questionTable'));
+
+        return view("question.create");
     }
 
     /**
@@ -32,36 +38,51 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $user = auth()->user();
-        $questionTable = session('questionTable');
-
-        // Create the 'questions' table if it doesn't exist
-        $createTableQuery = "
-            CREATE TABLE IF NOT EXISTS $questionTable (
-                id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
-                title VARCHAR(255),
-                description TEXT,
-                `created_at` timestamp NULL DEFAULT NULL,
-                `updated_at` timestamp NULL DEFAULT NULL
-            )
-        ";
-        DB::statement($createTableQuery);
-
-        // Insert data into the 'questions' table
-        $insertDataQuery = "
-            INSERT INTO $questionTable (user_id, title, description, created_at, updated_at)
-            VALUES (?, ?, ?, ?, ?)
-        ";
-        DB::insert($insertDataQuery, [
-            $user->id,
-            $request->title,
-            $request->description,
-            now(),
-            now(),
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
         ]);
-        // Redirect to the question list with success message
+
+        $question = new Question();
+        $question->title = $request->title;
+        $question->description = $request->description;
+
+        $question->save();
         return redirect()->route('question.index')->with('success', 'Question created successfully.');
+
+
+
+
+        // $user = auth()->user();
+        // $questionTable = session('questionTable');
+
+        // // Create the 'questions' table if it doesn't exist
+        // $createTableQuery = "
+        //     CREATE TABLE IF NOT EXISTS $questionTable (
+        //         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        //         user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
+        //         title VARCHAR(255),
+        //         description TEXT,
+        //         `created_at` timestamp NULL DEFAULT NULL,
+        //         `updated_at` timestamp NULL DEFAULT NULL
+        //     )
+        // ";
+        // DB::statement($createTableQuery);
+
+        // // Insert data into the 'questions' table
+        // $insertDataQuery = "
+        //     INSERT INTO $questionTable (user_id, title, description, created_at, updated_at)
+        //     VALUES (?, ?, ?, ?, ?)
+        // ";
+        // DB::insert($insertDataQuery, [
+        //     $user->id,
+        //     $request->title,
+        //     $request->description,
+        //     now(),
+        //     now(),
+        // ]);
+        // // Redirect to the question list with success message
+        // return redirect()->route('question.index')->with('success', 'Question created successfully.');
     }
 
     /**
@@ -78,6 +99,7 @@ class QuestionController extends Controller
     public function edit(string $id)
     {
         //
+        return view ("question.edit");
     }
 
     /**
@@ -86,6 +108,20 @@ class QuestionController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:255',
+            'description' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('question.edit', $id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $question = Question::find($id);
+        $question->title = $request->title;
+        $question->description = $request->description;
+        $question->save();
+        return redirect()->route('question.index')->with('success', 'Question updated successfully.');
     }
 
     /**

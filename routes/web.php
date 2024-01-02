@@ -62,9 +62,11 @@ Route::middleware('isAuthenticated')->group(function () {
 Route::resource('forum', ForumController::class);
 
 //question
-Route::middleware(['auth', 'isAuthenticated'])->group(function () {
-    Route::resource('question', QuestionController::class);
-});
+Route::resource('question', QuestionController::class);
+
+// Route::middleware(['auth', 'isAuthenticated'])->group(function () {
+//     Route::resource('question', QuestionController::class);
+// });
 
 //logout
 Route::get('/logout', function () {
