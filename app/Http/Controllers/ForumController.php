@@ -14,11 +14,10 @@ class ForumController extends Controller
      */
     public function index()
     {
-        //
-        $user = User::all();
-        // $question = Question::all();
+        $users = User::all();
+        $questions = Question::all();
 
-        return view('forum.index', ['users' => $user]);
+        return view('forum.index', ['users' => $users, 'questions' => $questions]);
     }
 
     /**

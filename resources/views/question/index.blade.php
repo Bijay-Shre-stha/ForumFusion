@@ -22,9 +22,9 @@
             @foreach ($questions as $question)
                 <div class="card mb-3 mt-5 " style="max-width: 1000px;">
                     <div class="card p-3 fs-6 fw-bolder ">
-                        Question: {{ $question->title }}
+                        Question: {{ ucfirst($question->title) }}
                         <br>
-                        Description: {{ $question->description }}
+                        Description: {{ ucfirst($question->description) }}
                     </div>
                     <div class="card-header">
                         <a href="{{ route('question.show', $question->id) }}" class="btn btn-primary">Show</a>

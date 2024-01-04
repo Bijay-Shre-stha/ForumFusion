@@ -1,14 +1,17 @@
 <x-navbar-layout>
     @section('title', 'forum')
-<body>
-    @foreach ($users as $user )
-    <h2>Question:
-        {{-- <a href="/forum/{{ $question->id }}">{{ $question->title }}</a> --}}
-    </h2>
-        <span>{{ $user->username }}</span>
-        <p class="text-muted">Joined {{ $user->created_at->diffForHumans() }}. Posted
 
-    @endforeach
-</body>
+    <body>
+
+        <h2 class="">Questions: </h2>
+        @foreach ($questions as $question)
+            <div class=" fw-bolder fs-6 mt-5 ">
+                {{ $loop->iteration }}. {{ucfirst( $question->title) }}
+                <p class="mt-2">Description: {{ucfirst ($question->description)}}</p>
+                <p><small>Asked by : Unknown
+                    </small></p>
+            </div>
+        @endforeach
+    </body>
 
 </x-navbar-layout>
