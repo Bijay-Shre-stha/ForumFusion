@@ -1,4 +1,5 @@
 <x-navbar-layout>
+    @section('title', 'Dashboard')
     <div class="container">
         <div class="row">
             <div class="col-md-12">

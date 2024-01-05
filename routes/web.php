@@ -7,6 +7,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\OrganizationController;
+use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -21,8 +22,9 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('auth.credentials.login');
-})->name('login');
+    $question = Question::all();
+    return view('forum.index', ['questions' => $question]);
+})->name('home');
 
 Route::get('/welcome', function () {
     return view('welcome');
