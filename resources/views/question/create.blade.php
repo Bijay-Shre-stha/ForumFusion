@@ -2,7 +2,7 @@
     @section('title', 'create your question')
     <div class="card">
         <div class="card-body">
-            <form action="{{route ("question.store")}}" method="post">
+            <form action="{{ route('question.store') }}" method="post">
                 @csrf
                 @method('post')
                 <div class="mb-3">
@@ -11,11 +11,16 @@
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Could you elaborate your question?</label><br>
-                    <textarea name="description" id="" cols="142" rows="10"></textarea>
+                    <textarea class="p-3" name="description" id="" cols="142" rows="10"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
+        <script>
+            setTimeout(function() {
+                $('#errorMessage').fadeOut('fast');
+            }, 2000);
+        </script>
 </x-navbar-layout>

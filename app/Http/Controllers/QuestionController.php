@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuestionRequest;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use Illuminate\Support\Facades\DB;
@@ -36,22 +37,12 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(QuestionRequest $request)
     {
-        $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required',
-        ]);
-
-        $question = new Question();
-        $question->title = $request->title;
-        $question->description = $request->description;
-
-        $question->save();
-        return redirect()->route('question.index')->with('success', 'Question created successfully.');
-
-
-
+        $question = $request->validated();
+        $question['user_id'] = auth()->user()->id;
+        Question::create($question);
+        return redirect()->route('question.index')->with('success', 'Your question has been added!');
 
         // $user = auth()->user();
         // $questionTable = session('questionTable');
