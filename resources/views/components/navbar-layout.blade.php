@@ -23,7 +23,7 @@
             <!-- Sidebar scroll-->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
-                    <a href="./index.html" class="text-nowrap logo-img">
+                    <a href="{{ route('forum.index') }}" class="text-nowrap logo-img">
                         <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -35,19 +35,19 @@
                     <ul id="sidebarnav">
                         @auth
 
-                        <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">Home</span>
-                            <box-icon name='user'></box-icon>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('dashboard.index') }}" aria-expanded="false">
-                                <span>
-                                    <i class='bx bxs-dashboard'></i>
-                                </span>
-                                <span class="hide-menu">Dashboard</span>
-                            </a>
-                        </li>
+                            <li class="nav-small-cap">
+                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                                <span class="hide-menu">Home</span>
+                                <box-icon name='user'></box-icon>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('dashboard.index') }}" aria-expanded="false">
+                                    <span>
+                                        <i class='bx bxs-dashboard'></i>
+                                    </span>
+                                    <span class="hide-menu">Dashboard</span>
+                                </a>
+                            </li>
                         @endauth
 
                         <li class="nav-small-cap">
@@ -142,38 +142,40 @@
                             <a href="/" target="_blank" class="btn btn-primary">
                                 <i class='bx bx-user-plus'></i>
                                 Invite</a>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    @auth
-                                    <img src="{{Auth::user()->avatar}}" alt="" width="35"
-                                        height="35" class="rounded-circle">
-                                    @endauth
+                            @auth
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
 
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
-                                    aria-labelledby="drop2">
-                                    <div class="message-body">
-                                        <a href="javascript:void(0)"
-                                            class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="bx bx-user fs-6"></i>
-                                            <p class="mb-0 fs-3">My Profile</p>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                            class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="bx bxs-user-account fs-6"></i>
-                                            <p class="mb-0 fs-3">My Account</p>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                            class="d-flex align-items-center gap-2 dropdown-item">
-                                            <i class="bx bx-list-check fs-6"></i>
-                                            <p class="mb-0 fs-3">My Task</p>
-                                        </a>
-                                        <a href="{{ route('logout') }}"
-                                            class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                                        <img src="{{ Auth::user()->avatar }}" alt="" width="35"
+                                            height="35" class="rounded-circle">
+
+
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up"
+                                        aria-labelledby="drop2">
+                                        <div class="message-body">
+                                            <a href="javascript:void(0)"
+                                                class="d-flex align-items-center gap-2 dropdown-item">
+                                                <i class="bx bx-user fs-6"></i>
+                                                <p class="mb-0 fs-3">My Profile</p>
+                                            </a>
+                                            <a href="javascript:void(0)"
+                                                class="d-flex align-items-center gap-2 dropdown-item">
+                                                <i class="bx bxs-user-account fs-6"></i>
+                                                <p class="mb-0 fs-3">My Account</p>
+                                            </a>
+                                            <a href="javascript:void(0)"
+                                                class="d-flex align-items-center gap-2 dropdown-item">
+                                                <i class="bx bx-list-check fs-6"></i>
+                                                <p class="mb-0 fs-3">My Task</p>
+                                            </a>
+                                            <a href="{{ route('logout') }}"
+                                                class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            @endauth
                         </ul>
                     </div>
                 </nav>
