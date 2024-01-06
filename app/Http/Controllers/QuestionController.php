@@ -40,7 +40,7 @@ class QuestionController extends Controller
     public function store(QuestionRequest $request)
     {
         $question = $request->validated();
-        $question['user_id'] = auth()->user()->id;
+        // $question['user_id'] = auth()->user()->id;
         Question::create($question);
         return redirect()->route('question.index')->with('success', 'Your question has been added!');
 
