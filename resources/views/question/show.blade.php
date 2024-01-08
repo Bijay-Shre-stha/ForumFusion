@@ -8,5 +8,6 @@
                 <b>-{{ $question->created_at->diffForHumans() }}</b>
             </small></p>
     </div>
-    
+    <x-quill-layout/>
+
 </x-navbar-layout>
