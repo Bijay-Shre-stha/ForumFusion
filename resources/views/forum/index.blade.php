@@ -27,6 +27,11 @@
                         <b>-{{ $question->created_at->diffForHumans() }}</b>
                     </small></p>
             </div>
+            <button class="btn btn-success ">
+                <a href="{{ route('question.show', $question->id) }}" class=" text-decoration-none text-white  ">
+                    View Question
+                </a>
+            </button>
         @endforeach
     </body>
 
