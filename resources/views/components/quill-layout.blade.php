@@ -3,7 +3,7 @@
 
 <!-- Create the editor container -->
 <div id="editor">
-    <p>Please answer here...</p>
+    <p>Please Answer here...</p>
 </div>
 
 <!-- Include the Quill library -->
@@ -13,5 +13,17 @@
 <script>
     var quill = new Quill('#editor', {
         theme: 'snow'
+    });
+
+    var editorContainer = document.getElementById('editor');
+
+    document.addEventListener('click', function (event) {
+        if (!editorContainer.contains(event.target)) {
+            quill.root.innerHTML = '';
+        }
+        
+        if (!editorContainer.contains(event.target) && quill.container.contains(document.activeElement)) {
+            quill.root.innerHTML = '';
+        }
     });
 </script>

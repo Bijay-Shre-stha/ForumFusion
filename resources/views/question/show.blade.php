@@ -7,7 +7,7 @@
                 Unknown <br>
                 <b>-{{ $question->created_at->diffForHumans() }}</b>
             </small></p>
-    </div>
+    </div> <br>
     <x-quill-layout/>
 
 </x-navbar-layout>
