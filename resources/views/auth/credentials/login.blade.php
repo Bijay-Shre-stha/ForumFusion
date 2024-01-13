@@ -40,7 +40,7 @@
                 <!-- Column for the form -->
                 <div class="col-md-6 col-sm-12 d-flex align-items-center justify-content-center">
                     <div class="welcome_container mt-5">
-                        <h1>Welcome to ACAS!</h1>
+                        <h1>Welcome to ForumFusion!</h1>
                         <form action="" method="">
                             @csrf
                             <div class="">
@@ -74,7 +74,7 @@
                         <div class="text-center mt-2  ">
                             Don't have an account? <a href="/" class=" text-decoration-none sign_up fw-bolder">Sign Up</a>
                         </div><br>
-                        <p> By continuing, you agree to ACAS's <b>Terms of Services, Privacy Policy</b>
+                        <p> By continuing, you agree to ForumFusion's <b>Terms of Services, Privacy Policy</b>
                         </p>
                     </div>
 

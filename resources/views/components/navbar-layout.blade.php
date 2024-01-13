@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title')</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="../assets/css/styles.min.css" />
-    <link rel="icon" href="../assets/images/saas.png" />
-</head>
-
-
-
+@include('layouts.app')
 <body>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -96,21 +81,33 @@
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <span class="hide-menu">AUTH</span>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('login') }}" aria-expanded="false">
-                                <span>
-                                    <i class='bx bx-log-in'></i> </span>
-                                <span class="hide-menu">Login</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="/sign_up" aria-expanded="false">
-                                <span>
-                                    <i class="bx bx-user-plus"></i>
-                                </span>
-                                <span class="hide-menu">Register</span>
-                            </a>
-                        </li>
+
+                        @if (Auth::check())
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('logout') }}" aria-expanded="false">
+                                    <span>
+                                        <i class='bx bx-log-out'></i> </span>
+                                    <span class="hide-menu">Logout</span>
+                                </a>
+                            </li>
+                        @else
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('login') }}" aria-expanded="false">
+                                    <span>
+                                        <i class='bx bx-log-in'></i> </span>
+                                    <span class="hide-menu">Login</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="/sign_up" aria-expanded="false">
+                                    <span>
+                                        <i class="bx bx-user-plus"></i>
+                                    </span>
+                                    <span class="hide-menu">Register</span>
+                                </a>
+                            </li>
+                        @endif
+
 
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -192,10 +189,4 @@
     </div>
 
 </body>
-<script src="../assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/js/sidebarmenu.js"></script>
-<script src="../assets/js/app.min.js"></script>
-{{-- <script src="../assets/libs/simplebar/dist/simplebar.js"></script> --}}
 
-</html>
