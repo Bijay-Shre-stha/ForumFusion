@@ -11,7 +11,7 @@
     </div> <br>
 
     <h1>Some Answers</h1>
-    @if ($answers)
+    @if ($answers && count($answers) > 0)
         @foreach ($answers as $answer)
             <div class="card mb-3 mt-5">
                 <div class="card p-3 fs-6 fw-bolder">

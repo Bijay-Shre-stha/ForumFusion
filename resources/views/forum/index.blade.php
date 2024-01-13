@@ -2,6 +2,10 @@
     @section('title', 'Forum')
 
     <body>
+
+
+
+        @if ($questions && count($questions) > 0)
         <!-- Search -->
         <div class="container">
             <div class="row">
@@ -17,22 +21,24 @@
             </div>
         </div>
         <!-- End Search -->
-
-        @foreach ($questions as $question)
-            <div class=" fw-bolder fs-6 mt-5 ">
-                {{ $loop->iteration }}. {{ ucfirst($question->title) }}
-                <p class="mt-2">Description: {{ ucfirst($question->description) }}</p>
-                <p><small>Asked by :
-                        Unknown <br>
-                        <b>-{{ $question->created_at->diffForHumans() }}</b>
-                    </small></p>
-            </div>
-            <button class="btn btn-success ">
-                <a href="{{ route('question.show', $question->id) }}" class=" text-decoration-none text-white  ">
-                    View Question
-                </a>
-            </button>
-        @endforeach
+            @foreach ($questions as $question)
+                <div class=" fw-bolder fs-6 mt-5 ">
+                    {{ $loop->iteration }}. {{ ucfirst($question->title) }}
+                    <p class="mt-2">Description: {{ ucfirst($question->description) }}</p>
+                    <p><small>Asked by :
+                            Unknown <br>
+                            <b>-{{ $question->created_at->diffForHumans() }}</b>
+                        </small></p>
+                </div>
+                <button class="btn btn-success ">
+                    <a href="{{ route('question.show', $question->id) }}" class=" text-decoration-none text-white  ">
+                        View Question
+                    </a>
+                </button>
+            @endforeach
+        @else
+            <h1 class=" text-center mt-5 p-5">No questions found.</h1>
+        @endif
     </body>
 
 </x-navbar-layout>
