@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\QuestionRequest;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use Illuminate\Support\Facades\DB;
@@ -82,8 +83,9 @@ class QuestionController extends Controller
     public function show(string $id)
     {
         //
-        $question = Question::find($id);
-        return view ('question.show', compact('question'));
+        $question = Question::findOrFail($id);
+        $answers = Answer::where('question_id', $id)->get();
+        return view('question.show', compact('question', 'answers'));
     }
 
     /**

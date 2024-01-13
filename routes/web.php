@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +66,8 @@ Route::resource('forum', ForumController::class);
 
 //question
 Route::resource('question', QuestionController::class);
+Route::resource('answer', AnswerController::class);
+
 
 // Route::middleware(['auth', 'isAuthenticated'])->group(function () {
 //     Route::resource('question', QuestionController::class);

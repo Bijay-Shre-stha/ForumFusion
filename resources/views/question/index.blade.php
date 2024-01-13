@@ -10,8 +10,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Question</h1>
-                    <a href="{{ route('question.create') }}" class="btn btn-success">Create Question</a>
+                    <h1>Questions</h1>
+                    <a href="{{ route('question.create') }}" class="btn btn-success mt-3 p-2">Create Question</a>
                 </div>
             </div>
             @foreach ($questions as $question)
