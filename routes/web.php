@@ -49,6 +49,9 @@ Route::get('/signup', function () {
 Route::get('/login', function () {
     return view('auth.credentials.login');
 })->name('login');
+Route::get('/askLogin', function () {
+    return view('auth.login');
+})->name('askLogin');
 
 
 //dashboard

@@ -13,7 +13,8 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
     <link rel="icon" href="../assets/images/saas.png" />
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/assets/images/saas.png">
+
 </head>
 
 <body>
@@ -25,14 +26,19 @@
 <script src="../assets/js/app.min.js"></script>
 {{-- <script src="../assets/libs/simplebar/dist/simplebar.js"></script> --}}
 
-<!-- Include the Quill library -->
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-
-<!-- Initialize Quill editor and blur it -->
 <script>
-    var quill = new Quill('#editor', {
-        theme: 'snow'
-    });
+    function togglePassword() {
+        var passwordInput = document.getElementById("password");
+        var eyeIcon = document.querySelector(".eye-icon");
 
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eyeIcon.innerHTML = '<i class="far fa-eye-slash"></i>';
+        } else {
+            passwordInput.type = "password";
+            eyeIcon.innerHTML = '<i class="far fa-eye"></i>';
+        }
+    }
 </script>
+
 </html>

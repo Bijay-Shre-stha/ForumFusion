@@ -1,4 +1,5 @@
 @include('layouts.app')
+
 <body>
     <!--  Body Wrapper -->
     <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
@@ -48,12 +49,27 @@
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('question.index') }}" aria-expanded="false">
-                                <span>
-                                    <i class='bx bx-question-mark'></i> </span>
-                                <span class="hide-menu">Ask</span>
-                            </a>
+                            @auth
+                                <a class="sidebar-link" href="{{ route('question.index') }}" aria-expanded="false">
+                                    <span>
+                                        <i class='bx bx-question-mark'></i>
+                                    </span>
+                                    <span class="hide-menu">Ask</span>
+                                </a>
+                            @else
+                                <a class="sidebar-link" href="{{ route('askLogin') }}" aria-expanded="false">
+                                    <span>
+                                        <i class='bx bx-question-mark'></i>
+                                    </span>
+                                    <span class="hide-menu">Ask</span>
+                                </a>
+                                <!-- Set a session flash message -->
+                                @php
+                                    session()->flash('login_required_message', 'You must be logged in to ask a question.');
+                                @endphp
+                            @endauth
                         </li>
+
                         @auth
                             <li class="nav-small-cap">
                                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -179,7 +195,7 @@
             </header>
             <!--  Header End -->
             <div class="container-fluid">
-                <div class="card w-100 h-100 position-relative">
+                <div class="card w-100 h-auto position-relative">
                     <div class="card-body">
                         {{ $slot }}
                     </div>
@@ -189,4 +205,3 @@
     </div>
 
 </body>
-
