@@ -50,7 +50,7 @@ Route::get('/login', function () {
     return view('auth.credentials.login');
 })->name('login');
 Route::get('/askLogin', function () {
-    return view('auth.login');
+    return view('auth.credentials.askLogin');
 })->name('askLogin');
 
 

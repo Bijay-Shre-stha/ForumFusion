@@ -17,7 +17,8 @@
         <p class="mt-2">Description: {{ ucfirst($question->description) }}</p>
         <p>
             <small>
-                Asked by: Unknown <br>
+                Asked by: {{ $question->user->username }},
+                <br>
                 <b>-{{ $question->created_at->diffForHumans() }}</b>
             </small>
         </p>

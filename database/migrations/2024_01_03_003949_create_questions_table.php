@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
+            // Foreign key
+            $table->foreignId('user_id')->constrained('users');
             // $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
-
-            // Foreign key
-            // $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

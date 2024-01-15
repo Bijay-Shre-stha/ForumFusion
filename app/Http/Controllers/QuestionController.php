@@ -20,8 +20,10 @@ class QuestionController extends Controller
         // $questionTable = $request->session()->get('questionTable');
         // $questions = DB::table($questionTable)->get();
 
-        $questions = Question::all();
+        $user_id = auth()->user()->id;
+        $questions = Question::where('user_id', $user_id)->get();
         return view('question.index', compact('questions'));
+
     }
 
     /**
@@ -41,7 +43,7 @@ class QuestionController extends Controller
     public function store(QuestionRequest $request)
     {
         $question = $request->validated();
-        // $question['user_id'] = auth()->user()->id;
+        $question['user_id'] = auth()->user()->id;
         Question::create($question);
         return redirect()->route('question.index')->with('success', 'Your question has been added!');
 

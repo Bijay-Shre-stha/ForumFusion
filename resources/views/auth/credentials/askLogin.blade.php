@@ -5,7 +5,6 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
-
 <body class="bg-light">
     <div class="container-fluid" style="">
         <div class="row">
@@ -21,11 +20,11 @@
                     <form action="" method="">
                         @csrf
                         <div class="">
-                            <input class="email w-100" type="email" name="email"
+                            <input class="input email w-100" type="email" name="email"
                                 placeholder="Enter Your Email Address" />
 
                             <div class="input_container">
-                                <input id="password" class="password w-100" type="password" name="password"
+                                <input id="password" class="input password w-100" type="password" name="password"
                                     placeholder="********" />
                                 <span class="eye-icon" onclick="togglePassword()">
                                     <i class="far fa-eye"></i>

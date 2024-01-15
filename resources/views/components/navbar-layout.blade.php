@@ -65,7 +65,7 @@
                                 </a>
                                 <!-- Set a session flash message -->
                                 @php
-                                    session()->flash('login_required_message', 'You must be logged in to ask a question.');
+                                    session()->flash('login_required_message', 'You must be logged in to ask any question.');
                                 @endphp
                             @endauth
                         </li>
@@ -195,7 +195,7 @@
             </header>
             <!--  Header End -->
             <div class="container-fluid">
-                <div class="card w-100 h-auto position-relative">
+                <div class="card w-100 h-100 position-relative">
                     <div class="card-body">
                         {{ $slot }}
                     </div>
