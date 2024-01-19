@@ -28,11 +28,12 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $request->all();
-        Answer::create($data);
-        return redirect()->route('question.index')->with('success', 'Your Answer has been added!');
+        $answer = Answer::create($data);
+        return redirect()->route('question.show', ['question' => $answer->question_id])
+            ->with('success', 'Your Answer has been added!');
     }
+
 
     /**
      * Display the specified resource.
@@ -42,7 +43,7 @@ class AnswerController extends Controller
         //
     }
 
-    /**
+    /**WW
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)

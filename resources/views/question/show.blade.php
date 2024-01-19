@@ -1,4 +1,9 @@
 <x-navbar-layout>
+    @if (session()->has('success'))
+        <div id="successMessage" class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+    @endif
     <script src="https://cdn.tiny.cloud/1/qsgenrtp7nklwvekddcbecmq27ani54uo3kkrdp5cn9np3bg/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
 
@@ -17,7 +22,7 @@
         <p class="mt-2">Description: {{ ucfirst($question->description) }}</p>
         <p>
             <small>
-                Asked by: {{ $question->user->username }},
+                Asked by: <span class=" fw-bold ">{{ $question->user->username }}</span>,
                 <br>
                 <b>-{{ $question->created_at->diffForHumans() }}</b>
             </small>
@@ -28,8 +33,21 @@
     @if ($answers && count($answers) > 0)
         @foreach ($answers as $answer)
             <div class="card mb-3 mt-3">
-                <div class="p-3 fs-6 fw-bolder">
-                    Answer: {!! ucfirst($answer->answer) !!}
+                <div class="p-3 fs-6 ">
+                    <p>
+                        {!! ucfirst($answer->answer) !!}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class=" fs-5 ">
+                        Answered: <br>
+                        <div class=" mt-2 ">
+                            <img src="{{ $answer->user->avatar }}" alt="{{ $answer->user->username }}" width="30"
+                            height="30"> <span class=" fw-bold ">{{ $answer->user->username }}</span>,
+                        <br>
+                        <b>-{{ $answer->created_at->diffForHumans() }}</b>
+                        </div>
+                    </small>
                 </div>
             </div>
         @endforeach
@@ -45,10 +63,16 @@
             @method('POST')
 
             <input type="hidden" name="question_id" value="{{ $question->id }}">
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
             <textarea name="answer" id="answer"></textarea>
             <button type="submit" class="btn btn-success mt-3 p-3 fs-4">Post your answer</button>
         </form>
     @else
         <p>Please <strong><a href="{{ route('login') }}">log in</a></strong> to post an answer.</p>
     @endauth
+    <script>
+        setTimeout(function() {
+            $('#successMessage').fadeOut('fast');
+        }, 2000);
+    </script>
 </x-navbar-layout>

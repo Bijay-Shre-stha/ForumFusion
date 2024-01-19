@@ -2,11 +2,6 @@
     @section('title', 'Question')
 
     <body>
-        @if (session()->has('success'))
-            <div id="successMessage" class="alert alert-success">
-                {{ session()->get('success') }}
-            </div>
-        @endif
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -35,9 +30,4 @@
             @endforeach
         </div>
     </body>
-    <script>
-        setTimeout(function() {
-            $('#successMessage').fadeOut('fast');
-        }, 2000);
-    </script>
 </x-navbar-layout>
