@@ -25,7 +25,7 @@ class GoogleController extends Controller
             $findUser = $this->findOrCreateUser($user);
 
             Auth::login($findUser);
-            return redirect()->route('dashboard.index');
+            return redirect()->route('forum.index');
         } catch (Exception $e) {
             Log::error('Google login error: ' . $e->getMessage());
             return redirect()->route('login');

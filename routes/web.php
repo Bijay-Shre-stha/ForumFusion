@@ -43,9 +43,6 @@ Route::get('login/google/redirect', [GoogleController::class, 'googleRedirect'])
 // Route::get('login/facebook/redirect', [FacebookController::class, 'facebookRedirect'])->name('facebook.redirect');
 
 //signup
-Route::get('/signup', function () {
-    return view('auth.credentials.signup');
-})->name('register');
 Route::get('/login', function () {
     return view('auth.credentials.login');
 })->name('login');
