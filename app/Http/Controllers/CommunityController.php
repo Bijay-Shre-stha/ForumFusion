@@ -10,13 +10,13 @@ use Illuminate\Database\Schema\Blueprint;
 use App\Models\User;
 use Illuminate\Support\Str;
 
-class OrganizationController extends Controller
+class CommunityController extends Controller
 {
 
     public function index()
     {
         $organizations = Organization::all();
-        return view('organization.index', compact('organizations'));
+        return view('community.index', compact('organizations'));
     }
 
     /**
@@ -24,7 +24,7 @@ class OrganizationController extends Controller
      */
     public function create()
     {
-        return view('organization.create');
+        return view('community.create');
     }
 
     /**
@@ -119,7 +119,7 @@ class OrganizationController extends Controller
         //     'created_at' => now(),
         //     'updated_at' => now(),
         // ]);
-        return redirect(route('dashboard.index'))->with('success', 'Organization created successfully');
+        return redirect(route('dashboard.index'))->with('success', 'Community created successfully');
     }
 
     /**

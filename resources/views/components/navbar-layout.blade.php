@@ -73,10 +73,10 @@
                         @auth
                             <li class="nav-small-cap">
                                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                <span class="hide-menu">Organization</span>
+                                <span class="hide-menu">Community</span>
                             </li>
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="{{ route('organization.index') }}" aria-expanded="false">
+                                <a class="sidebar-link" href="{{ route('community.index') }}" aria-expanded="false">
                                     <span>
                                         <i class='bx bx-building-house'></i>
                                     </span>
@@ -84,7 +84,7 @@
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a class="sidebar-link" href="{{ route('organization.create') }}" aria-expanded="false">
+                                <a class="sidebar-link" href="{{ route('community.create') }}" aria-expanded="false">
                                     <span>
                                         <i class='bx bx-building-house'></i>
                                     </span>

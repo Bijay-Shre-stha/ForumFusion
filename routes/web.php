@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
@@ -58,7 +59,7 @@ Route::middleware(['isAuthenticated'])->group(function () {
 
 //Org
 Route::middleware('isAuthenticated')->group(function () {
-    Route::resource('organization', OrganizationController::class);
+    Route::resource('community', CommunityController::class);
 });
 
 //forum
