@@ -38,18 +38,13 @@ class CommunityController extends Controller
     {
         $user = auth()->user();
         // dd($User);
-        $tableName = "organizations_" . $this->sanitizerTableName($request->organizationName);
-        $questionTable = "question_" . $this->sanitizerTableName($request->organizationName);
-        $answerTable = "answer_" . $this->sanitizerTableName($request->organizationName);
+        $tableName = "community_" . $this->sanitizerTableName($request->communityName);
+        $questionTable = "question_" . $this->sanitizerTableName($request->communityName);
+        $answerTable = "answer_" . $this->sanitizerTableName($request->communityName);
 
         Schema::create($tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('organizationName');
-            $table->string('organizationAddress');
-            $table->unsignedBigInteger('organizationPhoneNumber');
-            $table->string('organizationEmail');
-            $table->unsignedBigInteger('organizationPanNumber')->nullable();
-            $table->unsignedBigInteger('organizationVatNumber')->nullable();
+            $table->string('communityName');
             $table->timestamps();
         });
 
@@ -88,18 +83,13 @@ class CommunityController extends Controller
         }
 
         DB::table($tableName)->insert([
-            'organizationName' => $request->organizationName,
-            'organizationAddress' => $request->organizationAddress,
-            'organizationPhoneNumber' => $request->organizationPhoneNumber,
-            'organizationEmail' => $request->organizationEmail,
-            'organizationPanNumber' => $request->organizationPanNumber,
-            'organizationVatNumber' => $request->organizationVatNumber,
+            'communityName' => $request->communityName,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         DB::table('users_orgs')->insert([
             'user_id' => $user->id,
-            'org_id' => $request->organizationName,
+            'org_id' => $request->communityName,
             // 'userGoogle_id'=>$user->googleId,
             'created_at' => now(),
             'updated_at' => now(),
