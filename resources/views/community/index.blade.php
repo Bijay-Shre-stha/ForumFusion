@@ -1,26 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    @foreach ($organizations as $or )
-    {{$or->id}}
-    'organizationName', {{$or->organizationName}} <br>
-    'organizationAddress', {{$or->organizationAddress}}<br>
-    'organizationPhoneNumber',{{$or->organizationPhoneNumber}}<br>
-    'organizationEmail',{{$or->organizationEmail}}<br>
-    'organizationPanNumber', {{$or->organizationPanNumber}}<br>
-    'organizationVatNumber'{{$or->organizationVatNumber}}<br>
+<x-navbar-layout>
+    <a href="{{ route ('community.create')}}">
+        <button class="btn btn-success">Create community</button>
+    </a>
+    @foreach ($orgs as $community)
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ $community->org_id }}</h5>
+                {{-- <a href="{{ route('community.show', $community->id) }}" class="btn btn-primary">View</a> --}}
+            </div>
+        </div>
     @endforeach
-
-    <button class="btn btn-success ">
-        <a href="{{route ('organization.create')}}">
-            create
-        </a>
-    </button>
-</body>
-</html>
+</x-navbar-layout>

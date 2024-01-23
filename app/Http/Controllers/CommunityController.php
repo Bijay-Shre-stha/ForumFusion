@@ -15,8 +15,9 @@ class CommunityController extends Controller
 
     public function index()
     {
-        $organizations = Organization::all();
-        return view('community.index', compact('organizations'));
+        $user = auth()->user();
+        $orgs = DB::table('users_orgs')->where('user_id', $user->id)->get();
+        return view('community.index', compact('orgs'));
     }
 
     /**
