@@ -16,8 +16,8 @@ class CommunityController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $orgs = DB::table('users_orgs')->where('user_id', $user->id)->get();
-        return view('community.index', compact('orgs'));
+        $communities = DB::table('users_orgs')->where('user_id', $user->id)->get();
+        return view('community.index', compact('communities'));
     }
 
     /**
@@ -53,7 +53,7 @@ class CommunityController extends Controller
             Schema::create('users_orgs', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedInteger('user_id');
-                $table->string('org_id');
+                $table->string('communityName');
                 // $table->bigInteger('userGoogle_id');
                 $table->timestamps();
             });
@@ -75,7 +75,7 @@ class CommunityController extends Controller
             Schema::create($answerTable, function (Blueprint $table) use ($questionTable) {
                 $table->id();
                 $table->unsignedInteger('user_id');
-                $table->string('org_id');
+                $table->string('communityName');
                 $table->unsignedBigInteger('question_id'); // Add this line
                 $table->longText('answer');
                 $table->foreign('question_id')->references('id')->on($questionTable);
@@ -90,14 +90,14 @@ class CommunityController extends Controller
         ]);
         DB::table('users_orgs')->insert([
             'user_id' => $user->id,
-            'org_id' => $request->communityName,
+            'communityName' => $request->communityName,
             // 'userGoogle_id'=>$user->googleId,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         // DB::table($questionTable)->insert([
         //     'user_id' => $user->id,
-        //     'org_id' => $request->organizationName,
+        //     'communityName' => $request->organizationName,
         //     'title' => $request->title,
         //     'description' => $request->description,
         //     'created_at' => now(),
@@ -105,7 +105,7 @@ class CommunityController extends Controller
         // ]);
         // DB::table($answerTable)->insert([
         //     'user_id' => $user->id,
-        //     'org_id' => $randomNumber,
+        //     'communityName' => $randomNumber,
         //     'answer' => $request->answer,
         //     'created_at' => now(),
         //     'updated_at' => now(),

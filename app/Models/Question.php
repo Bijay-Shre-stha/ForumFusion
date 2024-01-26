@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     use HasFactory;
-    // protected $fillable = ['title', 'description', 'org_id', 'user_id'];
-    protected $fillable = ['title', 'description', 'org_id', 'user_id'];
+    // protected $fillable = ['title', 'description', 'communityName', 'user_id'];
+    protected $fillable = ['title', 'description', 'communityName', 'user_id'];
 
     public function organization(){
-        return $this->belongsTo(Organization::class, 'org_id' , 'id');
+        return $this->belongsTo(Organization::class, 'communityName' , 'id');
     }
     public function user(){
         return $this->belongsTo(User::class, 'user_id' , 'id');

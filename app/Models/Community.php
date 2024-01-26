@@ -13,13 +13,13 @@ class Community extends Model
         'user_Id',
     ];
     public function question(){
-        return $this->hasMany(Question::class, 'org_id' , 'user_id');
+        return $this->hasMany(Question::class, 'communityName' , 'user_id');
     }
     public function user(){
-        return $this->hasMany(User::class, 'org_id' , 'user_id');
+        return $this->hasMany(User::class, 'communityName' , 'user_id');
     }
     public function answer(){
-        return $this->hasMany(Answer::class, 'org_id' , 'user_id');
+        return $this->hasMany(Answer::class, 'communityName' , 'user_id');
     }
 
 }

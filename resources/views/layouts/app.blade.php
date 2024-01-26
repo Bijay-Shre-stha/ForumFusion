@@ -26,19 +26,4 @@
 <script src="../assets/js/app.min.js"></script>
 {{-- <script src="../assets/libs/simplebar/dist/simplebar.js"></script> --}}
 
-<script>
-    function togglePassword() {
-        var passwordInput = document.getElementById("password");
-        var eyeIcon = document.querySelector(".eye-icon");
-
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            eyeIcon.innerHTML = '<i class="far fa-eye-slash"></i>';
-        } else {
-            passwordInput.type = "password";
-            eyeIcon.innerHTML = '<i class="far fa-eye"></i>';
-        }
-    }
-</script>
-
 </html>
