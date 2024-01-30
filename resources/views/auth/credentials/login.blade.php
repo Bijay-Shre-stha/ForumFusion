@@ -20,11 +20,6 @@
                                 <i class="fab fa-google fa-fw"></i> Continue with Google
                             </a>
                         </div>
-                        {{-- <div class="facebook mt-2 ">
-                                <a href="{{ route('facebook.login') }}" class="btn btn-primary w-100">
-                                    <i class="fab fa-facebook fa-fw"></i> Continue with Facebook
-                                </a>
-                            </div> --}}
                     </form>
                     <br>
                     <p> By continuing, you agree to ForumFusion's <b>Terms of Services, Privacy Policy</b>
