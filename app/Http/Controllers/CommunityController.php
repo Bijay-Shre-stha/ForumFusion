@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use App\Models\User;
+use App\Models\UserCommunities;
 use Illuminate\Support\Str;
 
 class CommunityController extends Controller
@@ -16,7 +17,10 @@ class CommunityController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $communities = DB::table('users_orgs')->where('user_id', $user->id)->get();
+        $communities = UserCommunities::where('user_id', $user->id)->get();
+        if(!$communities){
+            return view('community.index');
+        }
         return view('community.index', compact('communities'));
     }
 
@@ -31,86 +35,14 @@ class CommunityController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    private function sanitizerTableName($name)
-    {
-        return Str::snake($name);
-    }
     public function store(Request $request)
     {
         $user = auth()->user();
-        // dd($User);
-        $tableName = "community_" . $this->sanitizerTableName($request->communityName);
-        $questionTable = "question_" . $this->sanitizerTableName($request->communityName);
-        $answerTable = "answer_" . $this->sanitizerTableName($request->communityName);
-
-        Schema::create($tableName, function (Blueprint $table) {
-            $table->id();
-            $table->string('communityName');
-            $table->timestamps();
-        });
-
-        if (!Schema::hasTable('users_orgs')) {
-            Schema::create('users_orgs', function (Blueprint $table) {
-                $table->id();
-                $table->unsignedInteger('user_id');
-                $table->string('communityName');
-                // $table->bigInteger('userGoogle_id');
-                $table->timestamps();
-            });
-        }
-
-        if (!Schema::hasTable($questionTable)) {
-            Schema::create($questionTable, function (Blueprint $table) {
-                $table->id();
-                $table->unsignedInteger('user_id');
-                $table->string('title');
-                $table->longText('description');
-                $table->timestamps();
-            });
-            session([
-                'questionTable' => $questionTable,
-            ]);
-        }
-        if (!Schema::hasTable($answerTable)) {
-            Schema::create($answerTable, function (Blueprint $table) use ($questionTable) {
-                $table->id();
-                $table->unsignedInteger('user_id');
-                $table->string('communityName');
-                $table->unsignedBigInteger('question_id'); // Add this line
-                $table->longText('answer');
-                $table->foreign('question_id')->references('id')->on($questionTable);
-                $table->timestamps();
-            });
-        }
-
-        DB::table($tableName)->insert([
-            'communityName' => $request->communityName,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('users_orgs')->insert([
-            'user_id' => $user->id,
-            'communityName' => $request->communityName,
-            // 'userGoogle_id'=>$user->googleId,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        // DB::table($questionTable)->insert([
-        //     'user_id' => $user->id,
-        //     'communityName' => $request->organizationName,
-        //     'title' => $request->title,
-        //     'description' => $request->description,
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ]);
-        // DB::table($answerTable)->insert([
-        //     'user_id' => $user->id,
-        //     'communityName' => $randomNumber,
-        //     'answer' => $request->answer,
-        //     'created_at' => now(),
-        //     'updated_at' => now(),
-        // ]);
-        return redirect(route('dashboard.index'))->with('success', 'Community created successfully');
+        $organization = new UserCommunities();
+        $organization->user_id = $user->id;
+        $organization->communityName = $request->communityName;
+        $organization->save();
+        return redirect(route('community.index'))->with('success', 'Community created successfully');
     }
 
     /**
