@@ -38,10 +38,10 @@ class CommunityController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $organization = new UserCommunities();
-        $organization->user_id = $user->id;
-        $organization->communityName = $request->communityName;
-        $organization->save();
+        $community = new UserCommunities();
+        $community->user_id = $user->id;
+        $community->communityName = $request->communityName;
+        $community->save();
         return redirect(route('community.index'))->with('success', 'Community created successfully');
     }
 
