@@ -20343,3 +20343,11 @@ h1 {
 .submit_button:hover {
     background-color: #45a049;
 }
+.hover_show {
+    display: none;
+}
+
+.name_hover:hover .hover_show {
+    display: inline;
+
+}
