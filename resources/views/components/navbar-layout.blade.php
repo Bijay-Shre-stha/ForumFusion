@@ -38,7 +38,7 @@
 
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">FEATURES</span>
+                            <span class="hide-menu fw-bolder ">FEATURES</span>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('forum.index') }}" aria-expanded="false">
@@ -70,11 +70,11 @@
                             @endauth
                         </li>
 
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu fw-bolder">Community</span>
+                        </li>
                         @auth
-                            <li class="nav-small-cap">
-                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                <span class="hide-menu">Community</span>
-                            </li>
                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="{{ route('community.index') }}" aria-expanded="false">
                                     <span>
@@ -92,10 +92,18 @@
                                 </a>
                             </li>
                         @endauth
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{ route('availableCommunity.index') }}" aria-expanded="false">
+                                <span>
+                                    <i class='bx bx-chat'></i>
+                                </span>
+                                <span class="hide-menu">Available Community</span>
+                            </a>
+                        </li>
 
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu">AUTH</span>
+                            <span class="hide-menu fw-bolder">AUTH</span>
                         </li>
 
                         @if (Auth::check())

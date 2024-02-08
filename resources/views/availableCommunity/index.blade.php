@@ -1,16 +1,13 @@
 <x-navbar-layout>
-
-    <h1 class="mt-4">Communities</h1>
-    <a href="{{ route('community.create') }}" class="m-4">
-        <button class="btn btn-success m-4">Create community</button>
-    </a>
-
+    <h1 class=" m-3 p-3 text-center ">Available Communities</h1>
     <div class="row">
-        @forelse ($communities as $community)
+        @foreach ($communities as $community)
             <div class="card">
                 <div class="card-body d-flex justify-content-between">
                     <h5 class="">{{ $community->communityName }}</h5>
-                    <a href="{{ route('community.show', $community->communityName) }}" class="btn btn-primary">View</a>
+                    @auth
+                    <a href="{{ route('community.show', $community->communityName) }}" class="btn btn-success">Join</a>
+                    @endauth
                 </div>
                 <div class="card-footer d-flex justify-content-between m-3">
                     <p class="text-muted cursor-pointer name_hover">
@@ -23,10 +20,6 @@
                     <span class="fw-bolder">{{ \Carbon\Carbon::parse($community->created_at)->format('Y-m-d') }}</span>
                 </div>
             </div>
-        @empty
-            <div class="alert alert-danger" role="alert">
-                No communities created
-            </div>
-        @endforelse
+        @endforeach
     </div>
 </x-navbar-layout>

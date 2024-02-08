@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnswerController;
+use App\Http\Controllers\AvailableCommunityController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\QuestionController;
@@ -68,6 +69,9 @@ Route::resource('forum', ForumController::class);
 //question
 Route::resource('question', QuestionController::class);
 Route::resource('answer', AnswerController::class);
+
+//AvailableCommunity
+Route::resource('availableCommunity', AvailableCommunityController::class);
 
 
 // Route::middleware(['auth', 'isAuthenticated'])->group(function () {
