@@ -122,14 +122,6 @@
                                     <span class="hide-menu">Login</span>
                                 </a>
                             </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="/sign_up" aria-expanded="false">
-                                    <span>
-                                        <i class="bx bx-user-plus"></i>
-                                    </span>
-                                    <span class="hide-menu">Register</span>
-                                </a>
-                            </li>
                         @endif
 
 
