@@ -23,7 +23,7 @@
 
                             <li class="nav-small-cap">
                                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                <span class="hide-menu">Home</span>
+                                <span class="hide-menu fw-bolder ">Home</span>
                                 <box-icon name='user'></box-icon>
                             </li>
                             <li class="sidebar-item">
