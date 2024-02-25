@@ -11,8 +11,8 @@ class Question extends Model
     // protected $fillable = ['title', 'description', 'communityName', 'user_id'];
     protected $fillable = ['title', 'description', 'communityName', 'user_id'];
 
-    public function organization(){
-        return $this->belongsTo(Organization::class, 'communityName' , 'id');
+    public function community(){
+        return $this->belongsTo(Community::class, 'communityName' , 'id');
     }
     public function user(){
         return $this->belongsTo(User::class, 'user_id' , 'id');
