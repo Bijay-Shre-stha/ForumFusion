@@ -4,7 +4,7 @@
             {{ session()->get('success') }}
         </div>
     @endif
-    <script src="https://cdn.tiny.cloud/1/qsgenrtp7nklwvekddcbecmq27ani54uo3kkrdp5cn9np3bg/tinymce/6/tinymce.min.js"
+    <script src="https://cdn.tiny.cloud/1/ythi0j085mic4ki07jiqtc5bor4z4sutbc0bhh50nxh1r2xp/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
 
     <script>
@@ -43,9 +43,9 @@
                         Answered: <br>
                         <div class=" mt-2 ">
                             <img src="{{ $answer->user->avatar }}" alt="{{ $answer->user->username }}" width="30"
-                            height="30"> <span class=" fw-bold ">{{ $answer->user->username }}</span>,
-                        <br>
-                        <b>-{{ $answer->created_at->diffForHumans() }}</b>
+                                height="30"> <span class=" fw-bold ">{{ $answer->user->username }}</span>,
+                            <br>
+                            <b>-{{ $answer->created_at->diffForHumans() }}</b>
                         </div>
                     </small>
                 </div>
