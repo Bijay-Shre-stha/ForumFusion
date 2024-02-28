@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use App\Models\User;
-use App\Models\UserCommunities;
+use App\Models\UserCommunity;
 use Illuminate\Support\Str;
 
 class CommunityController extends Controller
@@ -17,7 +17,7 @@ class CommunityController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $communities = UserCommunities::where('user_id', $user->id)->get();
+        $communities = UserCommunity::where('created_user_id', $user->id)->get();
         if(!$communities){
             return view('community.index');
         }
@@ -38,8 +38,8 @@ class CommunityController extends Controller
     public function store(Request $request)
     {
         $user = auth()->user();
-        $community = new UserCommunities();
-        $community->user_id = $user->id;
+        $community = new UserCommunity();
+        $community->created_user_id = $user->id;
         $community->communityName = $request->communityName;
         $community->save();
         return redirect(route('community.index'))->with('success', 'Community created successfully');

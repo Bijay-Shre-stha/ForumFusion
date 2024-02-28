@@ -93,11 +93,20 @@
                             </li>
                         @endauth
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('availableCommunity.index') }}" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('availableCommunity.index') }}"
+                                aria-expanded="false">
                                 <span>
                                     <i class='bx bx-chat'></i>
                                 </span>
                                 <span class="hide-menu">Available Community</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="/" aria-expanded="false">
+                                <span>
+                                    <i class='bx bx-news'></i>
+                                </span>
+                                <span class="hide-menu">Joined Community</span>
                             </a>
                         </li>
 

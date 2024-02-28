@@ -45,15 +45,15 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function organization()
-    {
-        return $this->belongsTo(Organization::class, 'id', 'googleId');
-    }
     public function question(){
         return $this->hasMany(Question::class, 'user_id' , 'id');
     }
     public function answer(){
         return $this->hasMany(Answer::class, 'user_id' , 'id');
+    }
+    public function communities()
+    {
+        return $this->belongsToMany(Community::class, 'user_communities');
     }
 
 }

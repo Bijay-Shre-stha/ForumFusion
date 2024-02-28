@@ -1,13 +1,16 @@
 <x-navbar-layout>
-    <h1 class=" m-3 p-3 text-center ">Available Communities</h1>
+    <h1 class="m-3 p-3 text-center">Available Communities</h1>
     <div class="row">
         @foreach ($communities as $community)
             <div class="card">
                 <div class="card-body d-flex justify-content-between">
-                    <h5 class="">{{ $community->communityName }}</h5>
-                    @auth
-                    <a href="{{ route('community.show', $community->communityName) }}" class="btn btn-success">Join</a>
-                    @endauth
+                    <h5>{{ $community->communityName }}</h5>
+                    <form action="{{ route('availableCommunity.join', $community->id) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="communityName" value="{{ $community->communityName }}">
+                        <input type="hidden" name="joinedUserIds" value="{{ Auth::user()->id }}">
+                        <button type="submit" class="btn btn-success">Join</button>
+                    </form>
                 </div>
                 <div class="card-footer d-flex justify-content-between m-3">
                     <p class="text-muted cursor-pointer name_hover">

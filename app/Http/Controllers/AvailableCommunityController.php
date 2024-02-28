@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UserCommunities;
+use App\Models\UserCommunity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AvailableCommunityController extends Controller
 {
@@ -13,11 +14,21 @@ class AvailableCommunityController extends Controller
     public function index()
     {
         $userId = auth()->id();
-        $communities = UserCommunities::where('user_id', '!=', $userId)->get();
+        $communities = UserCommunity::where('created_user_id', '!=', $userId)->get();
 
         return view('availableCommunity.index', compact('communities'));
     }
 
+    public function join(Request $request, string $id)
+    {
+        $community = UserCommunity::findOrFail($id);
+        $userId = Auth::id();
+        $joinedUsers = $community->joinedUsers()->where('user_id', $userId)->first();
+        if(!$joinedUsers) {
+            $community->joinedUsers()->create(['user_id' => $userId]);
+        }
+        return redirect()->route('availableCommunity.index');
+    }
 
     /**
      * Show the form for creating a new resource.

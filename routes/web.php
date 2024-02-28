@@ -72,6 +72,7 @@ Route::resource('answer', AnswerController::class);
 
 //AvailableCommunity
 Route::resource('availableCommunity', AvailableCommunityController::class);
+Route::post('availableCommunity/{community}/join', [AvailableCommunityController::class, 'join'])->name('availableCommunity.join');
 
 
 // Route::middleware(['auth', 'isAuthenticated'])->group(function () {
