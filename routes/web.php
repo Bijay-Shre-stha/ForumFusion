@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\ForumController;
+use App\Http\Controllers\JoinedCommunityController;
 use App\Http\Controllers\OrganizationController;
 use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
@@ -74,6 +75,8 @@ Route::resource('answer', AnswerController::class);
 Route::resource('availableCommunity', AvailableCommunityController::class);
 Route::post('availableCommunity/{community}/join', [AvailableCommunityController::class, 'join'])->name('availableCommunity.join');
 
+//joinedCommunity
+Route::resource(('joinedCommunity'), JoinedCommunityController::class);
 
 // Route::middleware(['auth', 'isAuthenticated'])->group(function () {
 //     Route::resource('question', QuestionController::class);

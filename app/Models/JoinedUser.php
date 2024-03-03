@@ -17,6 +17,6 @@ class JoinedUser extends Model
 
     public function userCommunity()
     {
-        return $this->belongsTo(UserCommunity::class);
+        return $this->belongsTo(UserCommunity::class, 'user_community_id');
     }
 }

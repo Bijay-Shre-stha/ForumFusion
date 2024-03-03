@@ -102,7 +102,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="/" aria-expanded="false">
+                            <a class="sidebar-link" href="{{route('joinedCommunity.index') }}" aria-expanded="false">
                                 <span>
                                     <i class='bx bx-news'></i>
                                 </span>
@@ -161,9 +161,9 @@
                     </ul>
                     <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                         <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                            <a href="/" target="_blank" class="btn btn-primary">
+                            {{-- <a href="/" target="_blank" class="btn btn-primary">
                                 <i class='bx bx-user-plus'></i>
-                                Invite</a>
+                                Invite</a> --}}
                             @auth
                                 <li class="nav-item dropdown">
                                     <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"

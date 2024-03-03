@@ -8,7 +8,7 @@
                     <form action="{{ route('availableCommunity.join', $community->id) }}" method="POST">
                         @csrf
                         <input type="hidden" name="communityName" value="{{ $community->communityName }}">
-                        <input type="hidden" name="joinedUserIds" value="{{ Auth::user()->id }}">
+                        {{-- <input type="hidden" name="joinedUserIds" value="{{ Auth::user()->id }}"> --}}
                         <button type="submit" class="btn btn-success">Join</button>
                     </form>
                 </div>
