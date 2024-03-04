@@ -24,11 +24,16 @@ class AvailableCommunityController extends Controller
         $community = UserCommunity::findOrFail($id);
         $userId = Auth::id();
         $joinedUsers = $community->joinedUsers()->where('user_id', $userId)->first();
+        
         if(!$joinedUsers) {
             $community->joinedUsers()->create(['user_id' => $userId]);
+        } else {
+            return redirect()->route('availableCommunity.index')->with('error', 'You are already a member of this community.');
         }
-        return redirect()->route('availableCommunity.index');
+        
+        return redirect()->route('availableCommunity.index')->with('success', 'You have successfully joined the community.');
     }
+    
 
     /**
      * Show the form for creating a new resource.
