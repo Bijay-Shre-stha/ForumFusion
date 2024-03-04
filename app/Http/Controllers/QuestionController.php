@@ -46,37 +46,6 @@ class QuestionController extends Controller
         $question['user_id'] = auth()->user()->id;
         Question::create($question);
         return redirect()->route('question.index')->with('success', 'Your question has been added!');
-
-        // $user = auth()->user();
-        // $questionTable = session('questionTable');
-
-        // // Create the 'questions' table if it doesn't exist
-        // $createTableQuery = "
-        //     CREATE TABLE IF NOT EXISTS $questionTable (
-        //         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        //         user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE,
-        //         title VARCHAR(255),
-        //         description TEXT,
-        //         `created_at` timestamp NULL DEFAULT NULL,
-        //         `updated_at` timestamp NULL DEFAULT NULL
-        //     )
-        // ";
-        // DB::statement($createTableQuery);
-
-        // // Insert data into the 'questions' table
-        // $insertDataQuery = "
-        //     INSERT INTO $questionTable (user_id, title, description, created_at, updated_at)
-        //     VALUES (?, ?, ?, ?, ?)
-        // ";
-        // DB::insert($insertDataQuery, [
-        //     $user->id,
-        //     $request->title,
-        //     $request->description,
-        //     now(),
-        //     now(),
-        // ]);
-        // // Redirect to the question list with success message
-        // return redirect()->route('question.index')->with('success', 'Question created successfully.');
     }
 
     /**

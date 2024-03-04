@@ -10,7 +10,6 @@
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
                     <a href="{{ route('forum.index') }}" class="text-nowrap logo-img">
-                        <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
                         <i class='bx bx-x fs-6'></i>
@@ -65,7 +64,10 @@
                                 </a>
                                 <!-- Set a session flash message -->
                                 @php
-                                    session()->flash('login_required_message', 'You must be logged in to ask any question.');
+                                    session()->flash(
+                                        'login_required_message',
+                                        'You must be logged in to ask any question.',
+                                    );
                                 @endphp
                             @endauth
                         </li>
@@ -102,7 +104,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{route('joinedCommunity.index') }}" aria-expanded="false">
+                            <a class="sidebar-link" href="{{ route('joinedCommunity.index') }}" aria-expanded="false">
                                 <span>
                                     <i class='bx bx-news'></i>
                                 </span>
