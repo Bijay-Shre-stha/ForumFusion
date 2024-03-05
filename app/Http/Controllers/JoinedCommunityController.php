@@ -18,6 +18,14 @@ class JoinedCommunityController extends Controller
         return view('JoinedCommunity.index', compact('communities'));
     }
 
+    public function leaveCommunity($id)
+    {
+        $community = JoinedUser::findOrFail($id);
+        $community->delete();
+        return redirect()->route('joinedCommunity.index')->with('success', 'You have left the community!');
+    }
+    
+
     /**
      * Show the form for creating a new resource.
      */

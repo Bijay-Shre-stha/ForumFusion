@@ -1,4 +1,5 @@
 <x-navbar-layout>
+    @section('title', 'Joined Communities')
     <h1 class="m-3 p-3 text-center">Joined Communities</h1>
     <div class="row">
         @foreach ($communities as $community)

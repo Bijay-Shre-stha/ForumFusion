@@ -1,5 +1,5 @@
 <x-navbar-layout>
-
+    @section('title', 'Communities')
     <h1 class="mt-4">Communities</h1>
     <a href="{{ route('community.create') }}" class="m-4">
         <button class="btn btn-success m-4">Create community</button>
