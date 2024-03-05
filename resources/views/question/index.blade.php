@@ -18,8 +18,6 @@
                     </div>
                     <div class="card-header">
                         <a href="{{ route('question.show', $question->id) }}" class="btn btn-primary">Show</a>
-                        <a href="{{ route('question.edit', $question->id) }}"
-                            class="btn btn-success text-white ">Edit</a>
                         <form action="{{ route('question.destroy', $question->id) }}" method="post" class="d-inline">
                             @csrf
                             @method('delete')

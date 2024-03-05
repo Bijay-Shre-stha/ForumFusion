@@ -23,7 +23,6 @@ class QuestionController extends Controller
         $user_id = auth()->user()->id;
         $questions = Question::where('user_id', $user_id)->get();
         return view('question.index', compact('questions'));
-
     }
 
     /**
@@ -65,7 +64,6 @@ class QuestionController extends Controller
     public function edit(string $id)
     {
         //
-        return view ("question.edit");
     }
 
     /**
@@ -73,21 +71,6 @@ class QuestionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|max:255',
-            'description' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return redirect()->route('question.edit', $id)
-                ->withErrors($validator)
-                ->withInput();
-        }
-        $question = Question::find($id);
-        $question->title = $request->title;
-        $question->description = $request->description;
-        $question->save();
-        return redirect()->route('question.index')->with('success', 'Question updated successfully.');
     }
 
     /**
@@ -96,5 +79,8 @@ class QuestionController extends Controller
     public function destroy(string $id)
     {
         //
+        $question = Question::findOrFail($id);
+        $question->delete();
+        return redirect()->route('question.index')->with('success', 'Your question has been deleted!');
     }
 }
