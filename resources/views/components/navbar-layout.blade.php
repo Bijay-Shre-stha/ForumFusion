@@ -103,14 +103,16 @@
                                 <span class="hide-menu">Available Community</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="{{ route('joinedCommunity.index') }}" aria-expanded="false">
-                                <span>
-                                    <i class='bx bx-news'></i>
-                                </span>
-                                <span class="hide-menu">Joined Community</span>
-                            </a>
-                        </li>
+                        @auth
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="{{ route('joinedCommunity.index') }}" aria-expanded="false">
+                                    <span>
+                                        <i class='bx bx-news'></i>
+                                    </span>
+                                    <span class="hide-menu">Joined Community</span>
+                                </a>
+                            </li>
+                        @endauth
 
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
