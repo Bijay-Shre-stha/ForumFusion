@@ -77,7 +77,7 @@ Route::post('availableCommunity/{community}/join', [AvailableCommunityController
 
 //joinedCommunity
 Route::resource(('joinedCommunity'), JoinedCommunityController::class);
-Route::delete('joinedCommunity/{community}/leave', [JoinedCommunityController::class, 'leaveCommunity'])->name('joinedCommunity.leave');
+Route::post('joinedCommunity/{community}/leave', [JoinedCommunityController::class, 'leaveCommunity'])->name('joinedCommunity.leave');
 
 // Route::middleware(['auth', 'isAuthenticated'])->group(function () {
 //     Route::resource('question', QuestionController::class);
