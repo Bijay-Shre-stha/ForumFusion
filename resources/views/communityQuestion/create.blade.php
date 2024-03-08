@@ -1,6 +1,8 @@
-<x-navbar-layout>
-    @section('title', 'Ask a Question')
+@extends('layouts.app')
 
+@section('title', 'Ask a Question')
+
+@section('content')
     @if ($errors->any())
         <div id="errorMessage" class="alert alert-danger">
             @foreach ($errors->all() as $error)
@@ -8,30 +10,36 @@
             @endforeach
         </div>
     @endif
+    <x-navbar-layout>
+        <h1 class="m-3 p-3 text-center">Ask a Question</h1>
+        <div class="d-flex justify-content-center">
+            <form method="POST" action="{{ route('communityQuestion.store') }}">
+                @csrf
+                <input type="hidden" name="community_id" value="{{ $id }}">
+                <div class="form-group">
+                    <label for="community_question_title">Title</label>
+                    <input type="text" class="form-control" id="community_question_title"
+                        name="community_question_title">
+                </div>
+                <div class="form-group">
+                    <label for="community_question_description">Description</label>
+                    <textarea class="form-control p-3" id="community_question_description" name="community_question_description"
+                        row="10" cols="140"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+        </div>
+    </x-navbar-layout>
+@endsection
 
-    <h1 class="m-3 p-3 text-center">Ask a Question</h1>
-    <div class="d-flex justify-content-center">
-        <form action="{{ route('communityQuestion.store') }}" method="post">
+@section('styles')
+    <!-- Additional CSS for this page -->
+    <link rel="stylesheet" href="{{ asset('assets/css/community.css') }}">
+@endsection
 
-            @csrf
-            @method('post')
-            <input type="hidden" name="community_id" value="{{ $community }}">
-            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-            <div class="mb-3">
-                <label for="community_question_title" class="form-label">Ask your question...</label>
-                <input type="text" name="community_question_title" class="form-control" id="question" aria-describedby="text">
-            </div>
-            <div class="mb-3">
-                <label for="community_question_description" class="form-label">Could you elaborate your question?</label><br>
-                <textarea class="p-3" name="community_question_description" id="" cols="142" rows="10"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-    <script>
-        setTimeout(function() {
-            $('#errorMessage').fadeOut('fast');
-        }, 2000);
-    </script>
-</x-navbar-layout>
-
+@section('scripts')
+    <script src="{{ asset('assets/libs/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/sidebarmenu.js') }}"></script>
+    <script src="{{ asset('assets/js/app.min.js') }}"></script>
+@endsection

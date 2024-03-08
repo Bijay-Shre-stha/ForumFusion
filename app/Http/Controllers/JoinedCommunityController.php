@@ -34,6 +34,10 @@ class JoinedCommunityController extends Controller
     {
         //
     }
+    public function createQuestion(string $id)
+    {
+        return view('communityQuestion.create', compact('id'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -55,8 +59,10 @@ class JoinedCommunityController extends Controller
             abort(404);
         }
 
-        $communityQuestions = $joinedUser->communityQuestions;
-        return view('communityQuestion.index', compact('communityQuestions'));
+        $communityQuestions = CommunityQuestion::where('community_id', $joinedUser->user_community_id)->get();
+        $community_id = $joinedUser->user_community_id; // Get the community ID
+
+        return view('communityQuestion.index', compact('communityQuestions' ,'community_id'));
     }
     /**
      * Show the form for editing the specified resource.

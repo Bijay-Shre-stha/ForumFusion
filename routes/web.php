@@ -81,7 +81,8 @@ Route::resource(('joinedCommunity'), JoinedCommunityController::class);
 Route::post('joinedCommunity/{community}/leave', [JoinedCommunityController::class, 'leaveCommunity'])->name('joinedCommunity.leave');
 
 //communityQuestion
-Route::resource('communityQuestion', CommunityQuestionController::class);
+Route::resource('communityQuestion', CommunityQuestionController::class );
+Route::get('communityQuestion/create/{user_community_id}', [JoinedCommunityController::class, 'createQuestion'])->name('communityQuestion.create');
 
 // Route::middleware(['auth', 'isAuthenticated'])->group(function () {
 //     Route::resource('question', QuestionController::class);

@@ -1,8 +1,19 @@
 <x-navbar-layout>
     @section('title', 'Community Questions')
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@elseif (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
     <h1 class="m-3 p-3 text-center">Community Questions</h1>
     <div class="d-flex justify-content-end">
-        <a href="{{ route('communityQuestion.create') }}" class="btn btn-primary">Ask a Question</a>
+        <a href="{{ route('communityQuestion.create', $community_id) }}" class="btn btn-primary">Ask a Question</a>
     </div>
     <div class="row mt-4">
         @foreach ($communityQuestions as $communityQuestion)

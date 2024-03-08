@@ -1,5 +1,16 @@
 <x-navbar-layout>
     @section('title', 'Joined Communities')
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <h1 class="m-3 p-3 text-center">Joined Communities</h1>
     <div class="row">
         @foreach ($communities as $community)
