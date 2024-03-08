@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommunityQuestion;
 use App\Models\JoinedUser;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class JoinedCommunityController extends Controller
         $community->delete();
         return redirect()->route('joinedCommunity.index')->with('success', 'You have left the community!');
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -47,9 +48,16 @@ class JoinedCommunityController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        $joinedUser = JoinedUser::findOrFail($id);
 
+        if (!$joinedUser->userCommunity) {
+            // Handle the case where user community is not found
+            abort(404);
+        }
+
+        $communityQuestions = $joinedUser->communityQuestions;
+        return view('communityQuestion.index', compact('communityQuestions'));
+    }
     /**
      * Show the form for editing the specified resource.
      */

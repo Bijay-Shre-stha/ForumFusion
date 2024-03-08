@@ -19,4 +19,13 @@ class JoinedUser extends Model
     {
         return $this->belongsTo(UserCommunity::class, 'user_community_id');
     }
+
+    public function communityQuestions()
+    {
+        return $this->hasMany(CommunityQuestion::class, 'community_id', 'user_community_id');
+    }
+
+    // public function communityAnswers(){
+    //     return $this->hasMany(CommunityAnswer::class, 'community_id', 'user_community_id');
+    // }
 }

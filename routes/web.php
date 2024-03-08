@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AvailableCommunityController;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\CommunityQuestionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
@@ -78,6 +79,9 @@ Route::post('availableCommunity/{community}/join', [AvailableCommunityController
 //joinedCommunity
 Route::resource(('joinedCommunity'), JoinedCommunityController::class);
 Route::post('joinedCommunity/{community}/leave', [JoinedCommunityController::class, 'leaveCommunity'])->name('joinedCommunity.leave');
+
+//communityQuestion
+Route::resource('communityQuestion', CommunityQuestionController::class);
 
 // Route::middleware(['auth', 'isAuthenticated'])->group(function () {
 //     Route::resource('question', QuestionController::class);
