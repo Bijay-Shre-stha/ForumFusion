@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserCommunity;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,27 +14,36 @@ class AvailableCommunityController extends Controller
      */
     public function index()
     {
+        try{
         $userId = auth()->id();
         $communities = UserCommunity::where('created_user_id', '!=', $userId)->get();
 
         return view('availableCommunity.index', compact('communities'));
+        }
+        catch (Exception $e) {
+            return redirect()->route('availableCommunity.index')->with('error', 'Error while fetching communities.');
+        }
     }
 
     public function join(Request $request, string $id)
     {
-        $community = UserCommunity::findOrFail($id);
-        $userId = Auth::id();
-        $joinedUsers = $community->joinedUsers()->where('user_id', $userId)->first();
-        
-        if(!$joinedUsers) {
-            $community->joinedUsers()->create(['user_id' => $userId]);
-        } else {
-            return redirect()->route('availableCommunity.index')->with('error', 'You are already a member of this community.');
+        try {
+            $community = UserCommunity::findOrFail($id);
+            $userId = Auth::id();
+            $joinedUsers = $community->joinedUsers()->where('user_id', $userId)->first();
+
+            if (!$joinedUsers) {
+                $community->joinedUsers()->create(['user_id' => $userId]);
+            } else {
+                return redirect()->route('availableCommunity.index')->with('error', 'You are already a member of this community.');
+            }
+
+            return redirect()->route('availableCommunity.index')->with('success', 'You have successfully joined the community.');
+        } catch (Exception $e) {
+            return redirect()->route('availableCommunity.index')->with('error', 'Error while joining the community, please login.');
         }
-        
-        return redirect()->route('availableCommunity.index')->with('success', 'You have successfully joined the community.');
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
