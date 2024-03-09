@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\AvailableCommunityController;
+use App\Http\Controllers\CommunityAnswerController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\CommunityQuestionController;
 use App\Http\Controllers\DashboardController;
@@ -83,6 +84,9 @@ Route::post('joinedCommunity/{community}/leave', [JoinedCommunityController::cla
 //communityQuestion
 Route::resource('communityQuestion', CommunityQuestionController::class );
 Route::get('communityQuestion/create/{user_community_id}', [JoinedCommunityController::class, 'createQuestion'])->name('communityQuestion.create');
+
+//communityAnswer
+Route::resource('communityAnswer', CommunityAnswerController::class);
 
 // Route::middleware(['auth', 'isAuthenticated'])->group(function () {
 //     Route::resource('question', QuestionController::class);
