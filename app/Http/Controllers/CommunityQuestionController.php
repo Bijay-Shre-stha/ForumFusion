@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommunityAnswer;
 use App\Models\CommunityQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,9 @@ class CommunityQuestionController extends Controller
     public function show(string $id)
     {
         //
+        $communityQuestion = CommunityQuestion::findOrFail($id);
+        $communityAnswers = CommunityAnswer::where('community_question_id', $id)->get();
+        return view('communityQuestion.show', compact('communityQuestion', 'communityAnswers'));
     }
 
     /**
