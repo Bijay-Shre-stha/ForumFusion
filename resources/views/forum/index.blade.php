@@ -5,7 +5,7 @@
 
         @if ($questions && count($questions) > 0)
             <!-- Search -->
-            <div class="container">
+            {{-- <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <form action="{{ route('forum.index') }}" method="get">
@@ -18,7 +18,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- End Search -->
             @foreach ($questions as $question)
                 <div class=" fw-bolder fs-6 mt-5 ">

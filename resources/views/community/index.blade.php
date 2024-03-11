@@ -1,6 +1,6 @@
 <x-navbar-layout>
     @section('title', 'Communities')
-    <h1 class="mt-4">Communities</h1>
+    <h1 class="mt-4 text-center ">Communities</h1>
     <a href="{{ route('community.create') }}" class="m-4">
         <button class="btn btn-success m-4">Create community</button>
     </a>
@@ -10,7 +10,7 @@
             <div class="card">
                 <div class="card-body d-flex justify-content-between">
                     <h5 class="">{{ $community->communityName }}</h5>
-                    <a href="{{ route('community.show', $community->communityName) }}" class="btn btn-primary">View</a>
+                    <a href="{{ route('joinedCommunity.show', $community->id) }}" class="btn btn-primary">View</a>
                 </div>
                 <div class="card-footer d-flex justify-content-between m-3">
                     <p class="text-muted cursor-pointer name_hover">
