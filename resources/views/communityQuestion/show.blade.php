@@ -38,6 +38,14 @@
     </div> <br>
     <hr class="border-3">
     <h2>Some Answers</h2>
+    <form action="{{ route('communityAnswer.index') }}" method="GET" class="answer-sort-form">
+        <input type="hidden" name="community_question_id" value="{{ $communityQuestion->id }}">
+        <select name="sort" id="sort" class="form-select form-select-lg mb-3 custom-select">
+            <option value="desc" @if (request('sort', 'desc') == 'desc') selected @endif>Sort by latest</option>
+            <option value="asc" @if (request('sort') == 'asc') selected @endif>Sort by oldest</option>
+        </select>
+        <button type="submit" class="btn btn-info">Sort Answers</button>
+    </form>
     @if ($communityAnswers && count($communityAnswers) > 0)
         @foreach ($communityAnswers as $answer)
             <div class="card mb-3 mt-3">

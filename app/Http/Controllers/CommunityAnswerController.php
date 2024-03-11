@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CommunityAnswerRequest;
 use App\Models\CommunityAnswer;
+use App\Models\CommunityQuestion;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,9 +14,16 @@ class CommunityAnswerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // answer sorting
+        $questionId = $request->input('community_question_id');
+        $sortOrder = $request->input('sort', 'desc');
+        $communityAnswers  = CommunityAnswer::where('community_question_id', $questionId)
+            ->orderBy('created_at', $sortOrder)
+            ->get();
+        $communityQuestion = CommunityQuestion::find($questionId);
+        return view('communityQuestion.show', compact('communityAnswers', 'communityQuestion'));
     }
 
     /**
@@ -32,12 +40,11 @@ class CommunityAnswerController extends Controller
     public function store(CommunityAnswerRequest $request)
     {
         //
-        try{
-        $data = $request->validated();
-        CommunityAnswer::create($data);
-        return redirect()->back()->with('success', 'Answer has been added successfully!');
-        }
-        catch (Exception $e) {
+        try {
+            $data = $request->validated();
+            CommunityAnswer::create($data);
+            return redirect()->back()->with('success', 'Answer has been added successfully!');
+        } catch (Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Error while adding answer!');
         }
