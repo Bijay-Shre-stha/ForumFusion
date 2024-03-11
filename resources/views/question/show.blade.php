@@ -30,6 +30,15 @@
     </div> <br>
     <hr class="border-3">
     <h2>Some Answers</h2>
+   <form action="{{ route('answer.index') }}" method="GET" class="answer-sort-form">
+    <input type="hidden" name="question_id" value="{{ $question->id }}">
+    <select name="sort" id="sort" class="form-select form-select-lg mb-3 custom-select">
+        <option value="desc" @if (request('sort', 'desc') == 'desc') selected @endif>Sort by latest</option>
+        <option value="asc" @if (request('sort') == 'asc') selected @endif>Sort by oldest</option>
+    </select>
+    <button type="submit" class="btn btn-info">Sort Answers</button>
+</form>
+
     @if ($answers && count($answers) > 0)
         @foreach ($answers as $answer)
             <div class="card mb-3 mt-3">

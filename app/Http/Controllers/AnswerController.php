@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Answer;
+use App\Models\Question;
 
 class AnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $questionId = $request->input('question_id');
+        $sortOrder = $request->input('sort', 'desc');
+        $answers = Answer::where('question_id', $questionId)
+            ->orderBy('created_at', $sortOrder)
+            ->get();
+        $question = Question::find($questionId);
+        return view('question.show', compact('answers', 'question'));
     }
 
     /**
