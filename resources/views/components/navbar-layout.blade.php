@@ -208,7 +208,7 @@
             </header>
             <!--  Header End -->
             <div class="container-fluid">
-                <div class="card w-100 h-100 position-relative">
+                <div class=" w-100 h-100 position-relative">
                     <div class="card-body">
                         {{ $slot }}
                     </div>
