@@ -81,6 +81,13 @@ class CommunityQuestionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //can be deleted by the user who created the question
+        $communityQuestion = CommunityQuestion::findOrFail($id);
+        if ($communityQuestion->user_id == Auth::id()) {
+            $communityQuestion->delete();
+            return redirect()->back()->with('success', 'Question has been deleted successfully!');
+        } else {
+            return redirect()->back()->with('error', 'You are not authorized to delete this question!');
+        }
     }
 }
