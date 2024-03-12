@@ -95,5 +95,5 @@ Route::resource('communityAnswer', CommunityAnswerController::class);
 //logout
 Route::get('/logout', function () {
     Auth::logout();
-    return redirect('/welcome');
+    return redirect('/');
 })->name('logout');

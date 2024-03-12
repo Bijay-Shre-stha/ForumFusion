@@ -36,7 +36,6 @@
                     </a>
                 </button>
                 <hr class=" border-3 ">
-                <hr class=" border-3 ">
             @endforeach
         @else
             <h1 class=" text-center mt-5 p-5">No questions found.</h1>

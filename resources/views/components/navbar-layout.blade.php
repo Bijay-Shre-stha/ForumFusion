@@ -6,6 +6,9 @@
         data-sidebar-position="fixed" data-header-position="fixed">
         <!-- Sidebar Start -->
         <aside class="left-sidebar">
+            <a href="/">
+                <img src="{{ asset('assets/images/saas.png') }}" alt="" class="logo">
+            </a>
             <!-- Sidebar scroll-->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
@@ -19,31 +22,25 @@
                 <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
                     <ul id="sidebarnav">
                         @auth
-
-                            <li class="nav-small-cap">
-                                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                                <span class="hide-menu fw-bolder ">Home</span>
-                                <box-icon name='user'></box-icon>
-                            </li>
                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="{{ route('dashboard.index') }}" aria-expanded="false">
                                     <span>
-                                        <i class='bx bxs-dashboard'></i>
+                                        <i class='bx bxs-dashboard bx-md'></i>
                                     </span>
-                                    <span class="hide-menu">Dashboard</span>
+                                    <span class="hide-menu s fs-3 fw-bold ">Dashboard</span>
                                 </a>
                             </li>
                         @endauth
 
                         <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu fw-bolder ">FEATURES</span>
+                            <i class="ti ti-dots nav-small-cap-icon s fs-3"></i>
+                            <span class="hide-menu fw-normal fs-3 ">FEATURES</span>
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="{{ route('forum.index') }}" aria-expanded="false">
                                 <span>
-                                    <i class='bx bx-book-content'></i> </span>
-                                <span class="hide-menu">Forums</span>
+                                    <i class='bx bx-book-content bx-md'></i> </span>
+                                <span class="hide-menu s fs-3 fw-bold ">Forums</span>
                             </a>
                         </li>
 
@@ -51,16 +48,16 @@
                             @auth
                                 <a class="sidebar-link" href="{{ route('question.index') }}" aria-expanded="false">
                                     <span>
-                                        <i class='bx bx-question-mark'></i>
+                                        <i class='bx bx-question-mark bx-md'></i>
                                     </span>
-                                    <span class="hide-menu">Ask</span>
+                                    <span class="hide-menu s fs-3 fw-bold ">Ask</span>
                                 </a>
                             @else
                                 <a class="sidebar-link" href="{{ route('askLogin') }}" aria-expanded="false">
                                     <span>
-                                        <i class='bx bx-question-mark'></i>
+                                        <i class='bx bx-question-mark bx-md'></i>
                                     </span>
-                                    <span class="hide-menu">Ask</span>
+                                    <span class="hide-menu s fs-3 fw-bold ">Ask</span>
                                 </a>
                                 <!-- Set a session flash message -->
                                 @php
@@ -73,24 +70,24 @@
                         </li>
 
                         <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu fw-bolder">Community</span>
+                            <i class="ti ti-dots nav-small-cap-icon s fs-3"></i>
+                            <span class="hide-menu fw-bold fs-3">Community</span>
                         </li>
                         @auth
                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="{{ route('community.index') }}" aria-expanded="false">
                                     <span>
-                                        <i class='bx bx-building-house'></i>
+                                        <i class='bx bxs-bookmarks bx-md'></i>
                                     </span>
-                                    <span class="hide-menu">My Community</span>
+                                    <span class="hide-menu s fs-3 fw-bold ">My Community</span>
                                 </a>
                             </li>
                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="{{ route('community.create') }}" aria-expanded="false">
                                     <span>
-                                        <i class='bx bx-building-house'></i>
+                                        <i class='bx bx-building-house bx-md'></i>
                                     </span>
-                                    <span class="hide-menu">Create Community</span>
+                                    <span class="hide-menu fw-bold s fs-3 ">Create Community</span>
                                 </a>
                             </li>
                         @endauth
@@ -98,41 +95,41 @@
                             <a class="sidebar-link" href="{{ route('availableCommunity.index') }}"
                                 aria-expanded="false">
                                 <span>
-                                    <i class='bx bx-chat'></i>
+                                    <i class='bx bx-chat bx-md'></i>
                                 </span>
-                                <span class="hide-menu">Available Community</span>
+                                <span class="hide-menu s fs-3 fw-bold ">Available Community</span>
                             </a>
                         </li>
                         @auth
                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="{{ route('joinedCommunity.index') }}" aria-expanded="false">
                                     <span>
-                                        <i class='bx bx-news'></i>
+                                        <i class='bx bx-news bx-md'></i>
                                     </span>
-                                    <span class="hide-menu">Joined Community</span>
+                                    <span class="hide-menu s fs-3 fw-bold ">Joined Community</span>
                                 </a>
                             </li>
                         @endauth
 
                         <li class="nav-small-cap">
-                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                            <span class="hide-menu fw-bolder">AUTH</span>
+                            <i class="ti ti-dots nav-small-cap-icon s fs-3"></i>
+                            <span class="hide-menu fw-bold fs-3">AUTH</span>
                         </li>
 
                         @if (Auth::check())
                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="{{ route('logout') }}" aria-expanded="false">
                                     <span>
-                                        <i class='bx bx-log-out'></i> </span>
-                                    <span class="hide-menu">Logout</span>
+                                        <i class='bx bx-log-out bx-md'></i> </span>
+                                    <span class="hide-menu s fs-3 fw-bold">Logout</span>
                                 </a>
                             </li>
                         @else
                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="{{ route('login') }}" aria-expanded="false">
                                     <span>
-                                        <i class='bx bx-log-in'></i> </span>
-                                    <span class="hide-menu">Login</span>
+                                        <i class='bx bx-log-in bx-md'></i> </span>
+                                    <span class="hide-menu s fs-3 fw-bold">Login</span>
                                 </a>
                             </li>
                         @endif
