@@ -4,7 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', Inter, sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 100;
     letter-spacing: .09rem;
 }
@@ -3957,7 +3957,7 @@ fieldset:disabled .btn {
 
 .btn-primary {
     --bs-btn-color: #fff;
-    --bs-btn-bg: #5d87ff;
+    --bs-btn-bg: #2c64ff;
     --bs-btn-border-color: #5d87ff;
     --bs-btn-hover-color: #fff;
     --bs-btn-hover-bg: #4f73d9;
@@ -3991,8 +3991,8 @@ fieldset:disabled .btn {
 
 .btn-success {
     --bs-btn-color: #fff;
-    --bs-btn-bg: #13deb9;
-    --bs-btn-border-color: #13deb9;
+    --bs-btn-bg: #02b875;
+    --bs-btn-border-color: #02b875;
     --bs-btn-hover-color: #fff;
     --bs-btn-hover-bg: #10bd9d;
     --bs-btn-hover-border-color: #0fb294;
@@ -4042,17 +4042,17 @@ fieldset:disabled .btn {
 
 .btn-danger {
     --bs-btn-color: #fff;
-    --bs-btn-bg: #fa896b;
-    --bs-btn-border-color: #fa896b;
+    --bs-btn-bg: #ff0800;
+    --bs-btn-border-color: #ff0800;
     --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: #d5745b;
-    --bs-btn-hover-border-color: #c86e56;
+    --bs-btn-hover-bg: #e60800;
+    --bs-btn-hover-border-color: #ff0800;
     --bs-btn-focus-shadow-rgb: 251, 155, 129;
     --bs-btn-active-color: #fff;
     --bs-btn-active-bg: #c86e56;
     --bs-btn-active-border-color: #bc6750;
     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-color: #fa896b;
     --bs-btn-disabled-bg: #fa896b;
     --bs-btn-disabled-border-color: #fa896b;
 }
