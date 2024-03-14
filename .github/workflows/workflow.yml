@@ -10,7 +10,7 @@ on:
 
 jobs:
   tests:
-    name: Tests
+    name: Run tests
     runs-on: ubuntu-latest
     steps:
       - uses : actions/checkout@v2
@@ -19,6 +19,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: 8.1
+        
       - name: Copy .env file
         run: |
         cp .env.ci .env
