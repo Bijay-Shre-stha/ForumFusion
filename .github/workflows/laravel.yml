@@ -37,7 +37,7 @@ jobs:
           cp .env.ci .env
           cp .env.testing .env
           php artisan key:generate
-          php artisan migrate --env=testing --no-interaction
+          php artisan migrate --no-interaction
         env:
           DB_CONNECTION: mysql
           DB_HOST: mysql
