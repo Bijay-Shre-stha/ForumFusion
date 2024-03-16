@@ -36,8 +36,5 @@
         </div>
     @endforeach
     </div>
-    {{-- <div class="d-flex justify-content-center">
-        {{ $communityQuestions->links() }}
-    </div> --}}
 
 </x-navbar-layout>
