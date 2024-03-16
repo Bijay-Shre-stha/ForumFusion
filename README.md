@@ -1,3 +1,4 @@
+<h1 style="text-align:center; ">ForumFusion</h1>
 
 # About ForumFusion
 
@@ -42,5 +43,5 @@ In the realm of online forum creation and management, ForumFusion emerges as pow
 - Users can have private discussions with other users.
 
 # Contributors
-- Bijay Shrestha ([GitHub](https://github.com/Bijay-Shre-stha))
+- -Bijay Shrestha ([GitHub](https://github.com/Bijay-Shre-stha)), March-2024
 
