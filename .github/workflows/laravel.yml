@@ -38,6 +38,12 @@ jobs:
           cp .env.testing .env
           php artisan key:generate
           php artisan migrate --env=testing --no-interaction
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: mysql
+          DB_PORT: 3306
+          DB_DATABASE: saas
+          DB_USERNAME: root
 
       - name: Run tests
         run: php artisan test
