@@ -14,7 +14,7 @@
                     <div class="card p-3 fs-6 fw-bolder ">
                         Question: {{ ucfirst($question->title) }}
                         <br>
-                        Description: {{ ucfirst($question->description) }}
+                        Description: {!! ucfirst($question->description) !!}
                     </div>
                     <div class="card-header">
                         <a href="{{ route('question.show', $question->id) }}" class="btn btn-primary">Show</a>
