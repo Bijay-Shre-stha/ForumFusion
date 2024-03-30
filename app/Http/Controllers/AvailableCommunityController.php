@@ -6,6 +6,7 @@ use App\Models\UserCommunity;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AvailableCommunityController extends Controller
 {
@@ -21,6 +22,7 @@ class AvailableCommunityController extends Controller
         return view('availableCommunity.index', compact('communities'));
         }
         catch (Exception $e) {
+            Log::error($e->getMessage());
             return redirect()->route('availableCommunity.index')->with('error', 'Error while fetching communities.');
         }
     }
@@ -40,6 +42,7 @@ class AvailableCommunityController extends Controller
 
             return redirect()->route('availableCommunity.index')->with('success', 'You have successfully joined the community.');
         } catch (Exception $e) {
+            Log::error($e->getMessage());
             return redirect()->route('availableCommunity.index')->with('error', 'Error while joining the community, please login.');
         }
     }

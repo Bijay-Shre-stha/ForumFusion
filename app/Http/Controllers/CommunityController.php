@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use App\Models\User;
 use App\Models\UserCommunity;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class CommunityController extends Controller
@@ -37,12 +38,18 @@ class CommunityController extends Controller
      */
     public function store(Request $request)
     {
+        try{
         $user = auth()->user();
         $community = new UserCommunity();
         $community->created_user_id = $user->id;
         $community->communityName = $request->communityName;
         $community->save();
         return redirect(route('community.index'))->with('success', 'Community created successfully');
+        }
+        catch(\Exception $e){
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Error in creating community');
+        }
     }
 
     /**

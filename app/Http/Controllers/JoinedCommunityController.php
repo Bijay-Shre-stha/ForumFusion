@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CommunityQuestion;
 use App\Models\JoinedUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class JoinedCommunityController extends Controller
 {
@@ -21,9 +22,14 @@ class JoinedCommunityController extends Controller
 
     public function leaveCommunity($id)
     {
-        $community = JoinedUser::findOrFail($id);
-        $community->delete();
-        return redirect()->route('joinedCommunity.index')->with('success', 'You have left the community!');
+        try {
+            $community = JoinedUser::findOrFail($id);
+            $community->delete();
+            return redirect()->route('joinedCommunity.index')->with('success', 'You have left the community!');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('joinedCommunity.index')->with('error', 'Error while leaving the community.');
+        }
     }
 
 
@@ -52,17 +58,22 @@ class JoinedCommunityController extends Controller
      */
     public function show(string $id)
     {
-        $joinedUser = JoinedUser::findOrFail($id);
+        try {
+            $joinedUser = JoinedUser::findOrFail($id);
 
-        if (!$joinedUser->userCommunity) {
-            // Handle the case where user community is not found
-            abort(404);
+            if (!$joinedUser->userCommunity) {
+                // Handle the case where user community is not found
+                abort(404);
+            }
+
+            $communityQuestions = CommunityQuestion::where('community_id', $joinedUser->user_community_id)->get();
+            $community_id = $joinedUser->user_community_id; // Get the community ID
+
+            return view('communityQuestion.index', compact('communityQuestions', 'community_id'));
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('joinedCommunity.index')->with('error', 'Error while fetching community questions.');
         }
-
-        $communityQuestions = CommunityQuestion::where('community_id', $joinedUser->user_community_id)->get();
-        $community_id = $joinedUser->user_community_id; // Get the community ID
-
-        return view('communityQuestion.index', compact('communityQuestions' ,'community_id'));
     }
     /**
      * Show the form for editing the specified resource.
