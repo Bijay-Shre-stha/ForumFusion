@@ -7,6 +7,7 @@ use App\Models\Answer;
 use Illuminate\Http\Request;
 use App\Models\Question;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
@@ -16,13 +17,14 @@ class QuestionController extends Controller
      */
     public function index(Request $request)
     {
-
-        // $questionTable = $request->session()->get('questionTable');
-        // $questions = DB::table($questionTable)->get();
-
-        $user_id = auth()->user()->id;
-        $questions = Question::where('user_id', $user_id)->get();
-        return view('question.index', compact('questions'));
+        try {
+            $user_id = auth()->user()->id;
+            $questions = Question::where('user_id', $user_id)->get();
+            return view('question.index', compact('questions'));
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Error in fetching questions');
+        }
     }
 
     /**
@@ -30,9 +32,6 @@ class QuestionController extends Controller
      */
     public function create(Request $request)
     {
-        // $questionTable = $request->session()->get('questionTable');
-        // return view("question.create", compact('questionTable'));
-
         return view("question.create");
     }
 
@@ -41,10 +40,15 @@ class QuestionController extends Controller
      */
     public function store(QuestionRequest $request)
     {
-        $question = $request->validated();
-        $question['user_id'] = auth()->user()->id;
-        Question::create($question);
-        return redirect()->route('question.index')->with('success', 'Your question has been added!');
+        try {
+            $question = $request->validated();
+            $question['user_id'] = auth()->user()->id;
+            Question::create($question);
+            return redirect()->route('question.index')->with('success', 'Your question has been added!');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Error in adding question');
+        }
     }
 
     /**
@@ -79,8 +83,13 @@ class QuestionController extends Controller
     public function destroy(string $id)
     {
         //
-        $question = Question::findOrFail($id);
-        $question->delete();
-        return redirect()->route('question.index')->with('success', 'Your question has been deleted!');
+        try {
+            $question = Question::findOrFail($id);
+            $question->delete();
+            return redirect()->route('question.index')->with('success', 'Your question has been deleted!');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Error in deleting question');
+        }
     }
 }

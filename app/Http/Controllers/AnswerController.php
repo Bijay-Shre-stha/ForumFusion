@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Answer;
 use App\Models\Question;
+use Illuminate\Support\Facades\Log;
 
 class AnswerController extends Controller
 {
@@ -35,10 +36,16 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
+        try{
         $data = $request->all();
         $answer = Answer::create($data);
         return redirect()->route('question.show', ['question' => $answer->question_id])
             ->with('success', 'Your Answer has been added!');
+        }
+        catch(\Exception $e){
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'Error in adding answer');
+        }
     }
 
 
