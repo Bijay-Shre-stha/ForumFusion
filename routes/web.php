@@ -43,9 +43,6 @@ Route::get('login/google', [GoogleController::class, 'google'])
 Route::get('login/google/redirect', [GoogleController::class, 'googleRedirect'])
     ->name('google.redirect');
 
-//facebook
-// Route::get('login/facebook', [FacebookController::class, 'facebook'])->name('facebook.login');
-// Route::get('login/facebook/redirect', [FacebookController::class, 'facebookRedirect'])->name('facebook.redirect');
 
 //signup
 Route::get('/login', function () {
@@ -88,9 +85,6 @@ Route::get('communityQuestion/create/{user_community_id}', [JoinedCommunityContr
 //communityAnswer
 Route::resource('communityAnswer', CommunityAnswerController::class);
 
-// Route::middleware(['auth', 'isAuthenticated'])->group(function () {
-//     Route::resource('question', QuestionController::class);
-// });
 
 //logout
 Route::get('/logout', function () {
