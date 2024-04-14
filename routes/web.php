@@ -32,11 +32,6 @@ Route::get('/', function () {
     return view('forum.index', ['questions' => $question]);
 })->name('home');
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
-
 //google
 Route::get('login/google', [GoogleController::class, 'google'])
     ->name('google.login');
