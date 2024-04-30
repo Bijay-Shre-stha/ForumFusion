@@ -51,9 +51,9 @@ class User extends Authenticatable
     public function answer(){
         return $this->hasMany(Answer::class, 'user_id' , 'id');
     }
-    public function communities()
-    {
-        return $this->belongsToMany(Community::class, 'user_communities');
-    }
+    // public function communities()
+    // {
+    //     return $this->belongsToMany(Community::class, 'user_communities');
+    // }
 
 }

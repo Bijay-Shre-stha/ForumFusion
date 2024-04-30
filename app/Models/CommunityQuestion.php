@@ -14,10 +14,10 @@ class CommunityQuestion extends Model
         'community_question_title',
         'community_question_description',
     ];
-    public function community()
-    {
-        return $this->belongsTo(Community::class);
-    }
+    // public function community()
+    // {
+    //     return $this->belongsTo(Community::class);
+    // }
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -16,10 +16,10 @@ class UserCommunity extends Model
     {
         return $this->belongsTo(User::class, 'created_user_id', 'id');
     }
-    public function community()
-    {
-        return $this->belongsTo(Community::class, 'communityName', 'id');
-    }
+    // public function community()
+    // {
+    //     return $this->belongsTo(Community::class, 'communityName', 'id');
+    // }
     public function users()
     {
         return $this->belongsToMany(User::class, 'user_communities', 'created_user_id');
